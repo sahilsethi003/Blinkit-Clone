@@ -1,0 +1,35 @@
+# =========================================================================
+# BlinkIt-Clone-Full-Stack-Ecommerce Git Ignore File
+# =========================================================================
+
+# Dependency Directories
+client/node_modules/
+server/node_modules/
+
+# Environment Configuration Files (Contains sensitive API keys & database credentials)
+client/.env
+server/.env
+*.env
+
+# Production Build Directories
+client/dist/
+dist/
+
+# Editor/IDE Settings
+.vscode/
+
+# Local logs and temporary files
+*.log
+npm-debug.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Large Media Files
+# Note: "Demo 1.gif" (28.9MB) and "Demo 2.gif" (13.7MB) are quite large.
+# Uncomment the lines below if you want to prevent pushing them to GitHub:
+# Demo 1.gif
+# Demo 2.gif
+# Thumnails.png
