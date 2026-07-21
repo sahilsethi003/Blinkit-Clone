@@ -17,19 +17,21 @@ import orderRouter from './route/order.route.js'
 
 const app = express()
 const allowedOrigins = [
-    process.env.FRONTEND_URL,
+    process.env.FRONTEND_URL ? process.env.FRONTEND_URL.replace(/\/$/, "") : null,
     "http://localhost:5173",
     "http://127.0.0.1:5173"
-];
+].filter(Boolean);
 
 app.use(cors({
     credentials : true,
     origin : function (origin, callback) {
         if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1 || origin.startsWith("http://localhost:") || origin.startsWith("http://127.0.0.1:")) {
+        const normalizedOrigin = origin.replace(/\/$/, "");
+        if (allowedOrigins.includes(normalizedOrigin) || normalizedOrigin.startsWith("http://localhost:") || normalizedOrigin.startsWith("http://127.0.0.1:")) {
             return callback(null, true);
         }
-        return callback(new Error('CORS not allowed'), false);
+        console.error("CORS Blocked for Origin:", origin, "Allowed Origins:", allowedOrigins);
+        return callback(new Error('CORS not allowed: ' + origin), false);
     }
 }))
 app.use(express.json())
