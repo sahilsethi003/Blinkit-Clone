@@ -34,7 +34,8 @@ app.use(cors({
         return callback(new Error('CORS not allowed: ' + origin), false);
     }
 }))
-app.use(express.json())
+app.use(express.json({ limit: '10mb' }))
+app.use(express.urlencoded({ limit: '10mb', extended: true }))
 app.use(cookieParser())
 app.use(morgan())
 app.use(helmet({
@@ -42,6 +43,8 @@ app.use(helmet({
 }))
 
 const PORT = process.env.PORT || 8080 
+console.log(process.env.CLODINARY_CLOUD_NAME);
+
 
 app.get("/",(request,response)=>{
     ///server to client

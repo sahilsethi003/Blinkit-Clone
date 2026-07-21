@@ -8,6 +8,7 @@ const uploadImageController = async(request,response)=>{
         try {
             uploadImageResult = await uploadImageClodinary(file)
         } catch (cloudinaryError) {
+            console.error("Cloudinary upload failed:", cloudinaryError);
             // If Cloudinary fails (e.g. due to missing or invalid credentials),
             // fallback to returning the image as a local Base64 Data URL
             const base64Image = `data:${file.mimetype};base64,${file.buffer.toString("base64")}`;

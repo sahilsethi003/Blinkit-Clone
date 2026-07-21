@@ -38,19 +38,21 @@ const ProductCardAdmin = ({ data, fetchProductData }) => {
     }
   }
   return (
-    <div className='w-36 p-4 bg-white rounded'>
-        <div>
+    <div className='w-full flex flex-col justify-between h-72 p-3 bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200'>
+        <div className='w-full h-32 bg-gray-50 flex items-center justify-center overflow-hidden rounded border border-gray-50'>
             <img
                src={data?.image[0]}  
                alt={data?.name}
-               className='w-full h-full object-scale-down'
+               className='w-full h-full object-scale-down p-2'
             />
         </div>
-        <p className='text-ellipsis line-clamp-2 font-medium'>{data?.name}</p>
-        <p className='text-slate-400'>{data?.unit}</p>
-        <div className='grid grid-cols-2 gap-3 py-2'>
-          <button onClick={()=>setEditOpen(true)} className='border px-1 py-1 text-sm border-green-600 bg-green-100 text-green-800 hover:bg-green-200 rounded'>Edit</button>
-          <button onClick={()=>setOpenDelete(true)} className='border px-1 py-1 text-sm border-red-600 bg-red-100 text-red-600 hover:bg-red-200 rounded'>Delete</button>
+        <div className='flex flex-col justify-between flex-grow mt-2'>
+            <p className='text-xs md:text-sm text-ellipsis line-clamp-2 font-semibold text-gray-800' title={data?.name}>{data?.name}</p>
+            <p className='text-xs text-slate-400 mt-0.5'>{data?.unit}</p>
+            <div className='grid grid-cols-2 gap-2 mt-2'>
+              <button onClick={()=>setEditOpen(true)} className='border py-1 text-xs border-green-200 bg-green-50 text-green-700 hover:bg-green-100 rounded transition-colors font-medium'>Edit</button>
+              <button onClick={()=>setOpenDelete(true)} className='border py-1 text-xs border-red-200 bg-red-50 text-red-600 hover:bg-red-100 rounded transition-colors font-medium'>Delete</button>
+            </div>
         </div>
 
         {

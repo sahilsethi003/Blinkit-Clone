@@ -70,7 +70,7 @@ function App() {
           <Outlet/>
       </main>
       <Footer/>
-      <Toaster/>
+      <Toaster position='top-right'/>
       {
         location.pathname !== '/checkout' && (
           <CartMobileLink/>

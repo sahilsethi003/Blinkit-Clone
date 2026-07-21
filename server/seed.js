@@ -862,7 +862,7 @@ const productsData = [
     // ==========================================
     {
         name: "Aashirvaad Shudh Chakki Atta",
-        image: ["https://images.unsplash.com/photo-1627483262769-04d0a1401487?w=500"],
+        image: ["https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?w=500"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Atta & Flour",
         unit: "10 kg",
@@ -873,7 +873,7 @@ const productsData = [
     },
     {
         name: "Fortune Chakki Fresh Atta",
-        image: ["https://images.unsplash.com/photo-1627483262769-04d0a1401487?w=500"],
+        image: ["https://images.unsplash.com/photo-1608686207856-001b95cf60ca?w=500"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Atta & Flour",
         unit: "5 kg",
@@ -906,7 +906,7 @@ const productsData = [
     },
     {
         name: "Tata Sampann Moong Dal",
-        image: ["https://images.unsplash.com/photo-1547058881-aa0edd92aab3?w=500"],
+        image: ["https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=500"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 kg",
@@ -917,7 +917,7 @@ const productsData = [
     },
     {
         name: "Tata Sampann Masoor Dal",
-        image: ["https://images.unsplash.com/photo-1547058881-aa0edd92aab3?w=500"],
+        image: ["https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=500"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 kg",
@@ -928,7 +928,7 @@ const productsData = [
     },
     {
         name: "Tata Sampann Kabuli Chana",
-        image: ["https://images.unsplash.com/photo-1547058881-aa0edd92aab3?w=500"],
+        image: ["https://images.unsplash.com/photo-1536304997881-a372c179924b?w=500"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 kg",
@@ -939,7 +939,7 @@ const productsData = [
     },
     {
         name: "Fortune Soyabean Oil",
-        image: ["https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500"],
+        image: ["https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 L",
@@ -950,7 +950,7 @@ const productsData = [
     },
     {
         name: "Fortune Mustard Oil",
-        image: ["https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500"],
+        image: ["https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=500"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 L",
@@ -961,7 +961,7 @@ const productsData = [
     },
     {
         name: "Tata Salt",
-        image: ["https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500"],
+        image: ["https://images.unsplash.com/photo-1604882737321-e6937fd6f519?w=500"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 kg",
