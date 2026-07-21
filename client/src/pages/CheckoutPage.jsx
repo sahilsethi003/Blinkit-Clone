@@ -8,7 +8,16 @@ import Axios from '../utils/Axios'
 import SummaryApi from '../common/SummaryApi'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import { loadStripe } from '@stripe/stripe-js'
+
+const loadRazorpayScript = () => {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
 
 const CheckoutPage = () => {
   const { notDiscountTotalPrice, totalPrice, totalQty, fetchCartItem,fetchOrder } = useGlobalContext()
@@ -16,10 +25,15 @@ const CheckoutPage = () => {
   const addressList = useSelector(state => state.addresses.addressList)
   const [selectAddress, setSelectAddress] = useState(0)
   const cartItemsList = useSelector(state => state.cartItem.cart)
+  const user = useSelector(state => state.user)
   const navigate = useNavigate()
 
   const handleCashOnDelivery = async() => {
       try {
+          if (!addressList[selectAddress]) {
+            toast.error("Please select a delivery address")
+            return
+          }
           const response = await Axios({
             ...SummaryApi.CashOnDeliveryOrder,
             data : {
@@ -54,31 +68,97 @@ const CheckoutPage = () => {
 
   const handleOnlinePayment = async()=>{
     try {
-        toast.loading("Loading...")
-        const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY
-        const stripePromise = await loadStripe(stripePublicKey)
-       
+        if (!addressList[selectAddress]) {
+            toast.error("Please select a delivery address")
+            return
+        }
+
+        toast.loading("Loading payment gateway...")
+        const isLoaded = await loadRazorpayScript()
+        if (!isLoaded) {
+            toast.dismiss()
+            toast.error("Razorpay SDK failed to load. Are you online?")
+            return
+        }
+
         const response = await Axios({
-            ...SummaryApi.payment_url,
+            ...SummaryApi.createRazorpayOrder,
             data : {
-              list_items : cartItemsList,
-              addressId : addressList[selectAddress]?._id,
-              subTotalAmt : totalPrice,
-              totalAmt :  totalPrice,
+              amount: Math.round(totalPrice * 100) // amount in paise
             }
         })
 
-        const { data : responseData } = response
+        const { data : orderData } = response
+        toast.dismiss()
 
-        stripePromise.redirectToCheckout({ sessionId : responseData.id })
-        
-        if(fetchCartItem){
-          fetchCartItem()
-        }
-        if(fetchOrder){
-          fetchOrder()
-        }
+        const options = {
+            key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+            amount: orderData.amount,
+            currency: orderData.currency,
+            name: "Binkeyit",
+            description: "Full-Stack Blinkit Clone Payment",
+            order_id: orderData.order_id,
+            handler: async function (response) {
+                toast.loading("Verifying payment...")
+                try {
+                    const verifyResponse = await Axios({
+                        ...SummaryApi.verifyRazorpayPayment,
+                        data: {
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_signature: response.razorpay_signature,
+                            list_items: cartItemsList,
+                            addressId: addressList[selectAddress]?._id,
+                            subTotalAmt: totalPrice,
+                            totalAmt: totalPrice
+                        }
+                    })
+
+                    toast.dismiss()
+                    if (verifyResponse.data.success) {
+                        toast.success("Payment Successful! Order placed.")
+                        if (fetchCartItem) {
+                            fetchCartItem()
+                        }
+                        if (fetchOrder) {
+                            fetchOrder()
+                        }
+                        navigate('/success', {
+                            state: {
+                                text: "Order"
+                            }
+                        })
+                    } else {
+                        toast.error(verifyResponse.data.message || "Payment verification failed")
+                    }
+                } catch (error) {
+                    toast.dismiss()
+                    AxiosToastError(error)
+                }
+            },
+            prefill: {
+                name: user?.name || "",
+                email: user?.email || "",
+                contact: addressList[selectAddress]?.mobile || ""
+            },
+            theme: {
+                color: "#15803d"
+            },
+            modal: {
+                ondismiss: function () {
+                    toast.error("Payment cancelled by user")
+                }
+            }
+        };
+
+        const rzp = new window.Razorpay(options);
+        rzp.on('payment.failed', function (response) {
+            toast.error(response.error.description || "Payment failed");
+        });
+        rzp.open();
+
     } catch (error) {
+        toast.dismiss()
         AxiosToastError(error)
     }
   }

@@ -149,6 +149,14 @@ const SummaryApi = {
         url : "/api/order/checkout",
         method : 'post'
     },
+    createRazorpayOrder : {
+        url : "/api/order/razorpay-create",
+        method : 'post'
+    },
+    verifyRazorpayPayment : {
+        url : "/api/order/razorpay-verify",
+        method : 'post'
+    },
     getOrderItems : {
         url : '/api/order/order-list',
         method : 'get'
