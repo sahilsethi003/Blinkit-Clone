@@ -10,10 +10,12 @@ import crypto from "crypto";
         const userId = request.userId // auth middleware 
         const { list_items, totalAmt, addressId,subTotalAmt } = request.body 
 
+        const checkoutOrderId = `ORD-${new mongoose.Types.ObjectId()}`
+
         const payload = list_items.map(el => {
             return({
                 userId : userId,
-                orderId : `ORD-${new mongoose.Types.ObjectId()}`,
+                orderId : checkoutOrderId,
                 productId : el.productId._id, 
                 product_details : {
                     name : el.productId.name,
@@ -169,10 +171,11 @@ export async function verifyPaymentController(request, response) {
         }
 
         // Signature is valid. Create orders in DB
+        const checkoutOrderId = `ORD-${new mongoose.Types.ObjectId()}`
         const payload = list_items.map(el => {
             return {
                 userId : userId,
-                orderId : `ORD-${new mongoose.Types.ObjectId()}`,
+                orderId : checkoutOrderId,
                 productId : el.productId._id, 
                 product_details : {
                     name : el.productId.name,

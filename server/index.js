@@ -43,8 +43,6 @@ app.use(helmet({
 }))
 
 const PORT = process.env.PORT || 8080 
-console.log(process.env.CLODINARY_CLOUD_NAME);
-
 
 app.get("/",(request,response)=>{
     ///server to client
