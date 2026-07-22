@@ -16,6 +16,7 @@ const Header = () => {
     const [ isMobile ] = useMobile()
     const location = useLocation()
     const isSearchPage = location.pathname === "/search"
+    const isAuthPage = ["/login", "/register", "/forgot-password", "/verification-otp", "/reset-password"].includes(location.pathname)
     const navigate = useNavigate()
     const user = useSelector((state)=> state?.user)
     const [openUserMenu,setOpenUserMenu] = useState(false)
@@ -83,16 +84,24 @@ const Header = () => {
 
                                 {/**Search */}
                                 <div className='hidden lg:block'>
-                                    <Search/>
+                                    {
+                                        !isAuthPage && (
+                                            <Search/>
+                                        )
+                                    }
                                 </div>
 
 
                                 {/**login and my cart */}
                                 <div className=''>
                                     {/**user icons display in only mobile version**/}
-                                    <button className='text-neutral-600 lg:hidden' onClick={handleMobileUser}>
-                                        <FaRegCircleUser size={26}/>
-                                    </button>
+                                    {
+                                        !isAuthPage && (
+                                            <button className='text-neutral-600 lg:hidden' onClick={handleMobileUser}>
+                                                <FaRegCircleUser size={26}/>
+                                            </button>
+                                        )
+                                    }
 
                                       {/**Desktop**/}
                                     <div className='hidden lg:flex  items-center gap-10'>
@@ -122,36 +131,46 @@ const Header = () => {
                                                     
                                                 </div>
                                             ) : (
-                                                <button onClick={redirectToLoginPage} className='text-lg px-2'>Login</button>
-                                            )
-                                        }
-                                        <button onClick={()=>setOpenCartSection(true)} className='flex items-center gap-2 bg-green-800 hover:bg-green-700 px-3 py-2 rounded text-white'>
-                                            {/**add to card icons */}
-                                            <div className='animate-bounce'>
-                                                <BsCart4 size={26}/>
-                                            </div>
-                                            <div className='font-semibold text-sm'>
-                                                {
-                                                    cartItem[0] ? (
-                                                        <div>
-                                                            <p>{totalQty} Items</p>
-                                                            <p>{DisplayPriceInRupees(totalPrice)}</p>
-                                                        </div>
-                                                    ) : (
-                                                        <p>My Cart</p>
-                                                    )
-                                                }
-                                            </div>    
-                                        </button>
+                                                 !isAuthPage && (
+                                                     <button onClick={redirectToLoginPage} className='text-gray-700 hover:text-secondary-200 font-bold transition-all duration-200'>Login</button>
+                                                 )
+                                             )
+                                         }
+                                         {
+                                             user?._id && (
+                                                 <button onClick={()=>setOpenCartSection(true)} className='flex items-center gap-3 bg-secondary-200 hover:bg-secondary-200/95 px-4 py-2.5 rounded-xl text-white shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 group'>
+                                                     {/**add to card icons */}
+                                                     <div className='group-hover:animate-bounce transition-all'>
+                                                         <BsCart4 size={24}/>
+                                                     </div>
+                                                     <div className='font-bold text-xs text-left tracking-wide'>
+                                                         {
+                                                             cartItem[0] ? (
+                                                                 <div>
+                                                                     <p>{totalQty} {totalQty === 1 ? 'Item' : 'Items'}</p>
+                                                                     <p className='text-white/90'>{DisplayPriceInRupees(totalPrice)}</p>
+                                                                 </div>
+                                                             ) : (
+                                                                 <p className='text-sm py-1'>My Cart</p>
+                                                             )
+                                                         }
+                                                     </div>    
+                                                 </button>
+                                             )
+                                         }
                                     </div>
                                 </div>
                 </div>
             )
         }
         
-        <div className='container mx-auto px-2 lg:hidden'>
-            <Search/>
-        </div>
+        {
+            !isAuthPage && (
+                <div className='container mx-auto px-2 lg:hidden'>
+                    <Search/>
+                </div>
+            )
+        }
 
         {
             openCartSection && (

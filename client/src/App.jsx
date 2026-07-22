@@ -3,7 +3,7 @@ import './App.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { Toaster } from 'react-hot-toast';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import fetchUserDetails from './utils/fetchUserDetails';
 import { setUserDetails } from './store/userSlice';
 import { setAllCategory,setAllSubCategory,setLoadingCategory } from './store/productSlice';
@@ -12,10 +12,12 @@ import Axios from './utils/Axios';
 import SummaryApi from './common/SummaryApi';
 import GlobalProvider from './provider/GlobalProvider';
 import CartMobileLink from './components/CartMobile';
+import FullscreenLoader from './components/FullscreenLoader';
 
 function App() {
   const dispatch = useDispatch()
   const location = useLocation()
+  const [appLoading, setAppLoading] = useState(true)
   
 
   const fetchUser = async()=>{
@@ -58,13 +60,29 @@ function App() {
   
 
   useEffect(()=>{
-    fetchUser()
-    fetchCategory()
-    fetchSubCategory()
+    const bootstrap = async () => {
+      try {
+        await Promise.all([
+          fetchUser(),
+          fetchCategory(),
+          fetchSubCategory()
+        ])
+      } catch (err) {
+        console.error("App bootstrap error", err)
+      } finally {
+        setAppLoading(false)
+      }
+    }
+    bootstrap()
   },[])
 
   return (
     <GlobalProvider> 
+      {
+        appLoading && (
+          <FullscreenLoader message="Welcome to Binkeyit! Getting things ready..." />
+        )
+      }
       <Header/>
       <main className='min-h-[78vh]'>
           <Outlet/>

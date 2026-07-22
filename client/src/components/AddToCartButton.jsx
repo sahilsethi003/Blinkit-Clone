@@ -82,23 +82,22 @@ const AddToCartButton = ({ data }) => {
         }
     }
     return (
-        <div className='w-full max-w-[150px]'>
+        <div className='w-full min-w-[70px] lg:min-w-[85px]'>
             {
                 isAvailableCart ? (
-                    <div className='flex w-full h-full'>
-                        <button onClick={decreaseQty} className='bg-green-600 hover:bg-green-700 text-white flex-1 w-full p-1 rounded flex items-center justify-center'><FaMinus /></button>
-
-                        <p className='flex-1 w-full font-semibold px-1 flex items-center justify-center'>{qty}</p>
-
-                        <button onClick={increaseQty} className='bg-green-600 hover:bg-green-700 text-white flex-1 w-full p-1 rounded flex items-center justify-center'><FaPlus /></button>
+                    <div className='flex items-center w-full bg-secondary-200 rounded-lg overflow-hidden border border-secondary-200 text-white font-extrabold text-xs h-8 shadow-sm transition-all duration-200'>
+                        <button onClick={decreaseQty} className='hover:bg-secondary-200/80 text-white px-2.5 h-full flex items-center justify-center transition-colors duration-200'><FaMinus size={10} /></button>
+                        
+                        <p className='flex-1 text-center bg-white text-secondary-200 h-full flex items-center justify-center px-1.5 select-none font-bold text-sm'>{qty}</p>
+                        
+                        <button onClick={increaseQty} className='hover:bg-secondary-200/80 text-white px-2.5 h-full flex items-center justify-center transition-colors duration-200'><FaPlus size={10} /></button>
                     </div>
                 ) : (
-                    <button onClick={handleADDTocart} className='bg-green-600 hover:bg-green-700 text-white px-2 lg:px-4 py-1 rounded'>
-                        {loading ? <Loading /> : "Add"}
+                    <button onClick={handleADDTocart} className='w-full text-center bg-white hover:bg-secondary-200 hover:text-white text-secondary-200 font-extrabold text-xs px-3.5 py-1.5 rounded-lg border border-secondary-200 shadow-sm transition-all duration-200 active:scale-95'>
+                        {loading ? <Loading /> : "ADD"}
                     </button>
                 )
             }
-
         </div>
     )
 }

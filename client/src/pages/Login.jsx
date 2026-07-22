@@ -69,53 +69,55 @@ const Login = () => {
 
     }
     return (
-        <section className='w-full container mx-auto px-2'>
-            <div className='bg-white my-4 w-full max-w-lg mx-auto rounded p-7'>
+        <section className='w-full min-h-[75vh] flex items-center justify-center px-4 py-8 bg-transparent animate-in fade-in duration-300'>
+            <div className='bg-white w-full max-w-md rounded-2xl shadow-xl border border-slate-100 p-8'>
+                <h2 className='font-bold text-xl text-gray-800 text-center mb-2'>Welcome Back</h2>
+                <p className='text-xs text-gray-400 text-center mb-5 font-medium'>Log in to your account to continue shopping</p>
 
-                <form className='grid gap-4 py-4' onSubmit={handleSubmit}>
-                    <div className='grid gap-1'>
-                        <label htmlFor='email'>Email :</label>
+                <form className='grid gap-4' onSubmit={handleSubmit}>
+                    <div className='grid gap-1.5'>
+                        <label htmlFor='email' className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Email</label>
                         <input
                             type='email'
                             id='email'
-                            className='bg-blue-50 p-2 border rounded outline-none focus:border-primary-200'
+                            className='px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-secondary-200 transition-all text-sm font-medium text-gray-700'
                             name='email'
                             value={data.email}
                             onChange={handleChange}
                             placeholder='Enter your email'
                         />
                     </div>
-                    <div className='grid gap-1'>
-                        <label htmlFor='password'>Password :</label>
-                        <div className='bg-blue-50 p-2 border rounded flex items-center focus-within:border-primary-200'>
+                    <div className='grid gap-1.5'>
+                        <label htmlFor='password' className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Password</label>
+                        <div className='bg-slate-50 px-4 py-2.5 border border-slate-200 rounded-xl flex items-center focus-within:border-secondary-200 transition-all'>
                             <input
                                 type={showPassword ? "text" : "password"}
                                 id='password'
-                                className='w-full outline-none'
+                                className='w-full outline-none bg-transparent text-sm font-medium text-gray-700'
                                 name='password'
                                 value={data.password}
                                 onChange={handleChange}
                                 placeholder='Enter your password'
                             />
-                            <div onClick={() => setShowPassword(preve => !preve)} className='cursor-pointer'>
+                            <div onClick={() => setShowPassword(preve => !preve)} className='cursor-pointer text-gray-400 hover:text-gray-600 transition-colors pl-2'>
                                 {
                                     showPassword ? (
-                                        <FaRegEye />
+                                        <FaRegEye size={16} />
                                     ) : (
-                                        <FaRegEyeSlash />
+                                        <FaRegEyeSlash size={16} />
                                     )
                                 }
                             </div>
                         </div>
-                        <Link to={"/forgot-password"} className='block ml-auto hover:text-primary-200'>Forgot password ?</Link>
+                        <Link to={"/forgot-password"} className='block ml-auto text-xs font-bold text-gray-400 hover:text-secondary-200 transition-colors mt-1'>Forgot password ?</Link>
                     </div>
     
-                    <button disabled={!valideValue} className={` ${valideValue ? "bg-green-800 hover:bg-green-700" : "bg-gray-500" }    text-white py-2 rounded font-semibold my-3 tracking-wide`}>Login</button>
+                    <button disabled={!valideValue} className={`w-full py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-sm transition-all duration-200 active:scale-95 my-3 ${valideValue ? "bg-secondary-200 hover:bg-secondary-200/90 hover:shadow text-white shadow-md" : "bg-slate-200 text-slate-400 cursor-not-allowed" }`}>Login</button>
 
                 </form>
 
-                <p>
-                    Don't have account? <Link to={"/register"} className='font-semibold text-green-700 hover:text-green-800'>Register</Link>
+                <p className='text-sm text-center text-gray-500 mt-4'>
+                    Don't have account? <Link to={"/register"} className='font-extrabold text-secondary-200 hover:text-secondary-200/80 transition-colors'>Register</Link>
                 </p>
             </div>
         </section>

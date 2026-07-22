@@ -28,7 +28,7 @@ const UserMenu = ({close}) => {
             dispatch(logout())
             localStorage.clear()
             toast.success(response.data.message)
-            navigate("/")
+            navigate("/login")
           }
         } catch (error) {
           console.log(error)
@@ -53,36 +53,36 @@ const UserMenu = ({close}) => {
 
         <Divider/>
 
-        <div className='text-sm grid gap-1'>
+        <div className='text-sm grid gap-1 mt-3'>
             {
               isAdmin(user.role) && (
-                <Link onClick={handleClose} to={"/dashboard/category"} className='px-2 hover:bg-orange-200 py-1'>Category</Link>
+                <Link onClick={handleClose} to={"/dashboard/category"} className='px-3 py-2 hover:bg-slate-50 hover:text-secondary-200 rounded-lg transition-all duration-200 font-bold text-gray-700'>Category</Link>
               )
             }
 
             {
               isAdmin(user.role) && (
-                <Link onClick={handleClose} to={"/dashboard/subcategory"} className='px-2 hover:bg-orange-200 py-1'>Sub Category</Link>
+                <Link onClick={handleClose} to={"/dashboard/subcategory"} className='px-3 py-2 hover:bg-slate-50 hover:text-secondary-200 rounded-lg transition-all duration-200 font-bold text-gray-700'>Sub Category</Link>
               )
             }
 
             {
               isAdmin(user.role) && (
-                <Link onClick={handleClose} to={"/dashboard/upload-product"} className='px-2 hover:bg-orange-200 py-1'>Upload Product</Link>
+                <Link onClick={handleClose} to={"/dashboard/upload-product"} className='px-3 py-2 hover:bg-slate-50 hover:text-secondary-200 rounded-lg transition-all duration-200 font-bold text-gray-700'>Upload Product</Link>
               )
             }
 
             {
               isAdmin(user.role) && (
-                <Link onClick={handleClose} to={"/dashboard/product"} className='px-2 hover:bg-orange-200 py-1'>Product</Link>
+                <Link onClick={handleClose} to={"/dashboard/product"} className='px-3 py-2 hover:bg-slate-50 hover:text-secondary-200 rounded-lg transition-all duration-200 font-bold text-gray-700'>Product</Link>
               )
             }
 
-            <Link onClick={handleClose} to={"/dashboard/myorders"} className='px-2 hover:bg-orange-200 py-1'>My Orders</Link>
+            <Link onClick={handleClose} to={"/dashboard/myorders"} className='px-3 py-2 hover:bg-slate-50 hover:text-secondary-200 rounded-lg transition-all duration-200 font-bold text-gray-700'>My Orders</Link>
 
-            <Link onClick={handleClose} to={"/dashboard/address"} className='px-2 hover:bg-orange-200 py-1'>Save Address</Link>
+            <Link onClick={handleClose} to={"/dashboard/address"} className='px-3 py-2 hover:bg-slate-50 hover:text-secondary-200 rounded-lg transition-all duration-200 font-bold text-gray-700'>Save Address</Link>
 
-            <button onClick={handleLogout} className='text-left px-2 hover:bg-orange-200 py-1'>Log Out</button>
+            <button onClick={handleLogout} className='text-left px-3 py-2 hover:bg-red-50 hover:text-red-600 rounded-lg transition-all duration-200 font-bold text-gray-700'>Log Out</button>
 
         </div>
     </div>

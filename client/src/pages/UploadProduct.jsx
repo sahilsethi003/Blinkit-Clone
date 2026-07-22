@@ -147,14 +147,15 @@ const UploadProduct = () => {
   //   successAlert("Upload successfully")
   // },[])
   return (
-    <section className=''>
-        <div className='p-2   bg-white shadow-md flex items-center justify-between'>
-            <h2 className='font-semibold'>Upload Product</h2>
+    <div className='bg-white'>
+        <div className='bg-white px-6 py-4 flex items-center gap-2 border-b border-slate-100'>
+            <span className="w-1.5 h-6 bg-secondary-200 rounded-full"></span>
+            <h2 className='font-bold text-gray-800 text-lg'>Upload Product</h2>
         </div>
-        <div className='grid p-3'>
-            <form className='grid gap-4' onSubmit={handleSubmit}>
-                <div className='grid gap-1'>
-                  <label htmlFor='name' className='font-medium'>Name</label>
+        <div className='p-6 bg-slate-50/50 min-h-[80vh]'>
+            <form className='grid gap-5 max-w-3xl' onSubmit={handleSubmit}>
+                <div className='grid gap-1.5'>
+                  <label htmlFor='name' className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Product Name</label>
                   <input 
                     id='name'
                     type='text'
@@ -163,34 +164,32 @@ const UploadProduct = () => {
                     value={data.name}
                     onChange={handleChange}
                     required
-                    className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+                    className='px-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-secondary-200 transition-all text-sm font-medium text-gray-700 shadow-xs'
                   />
                 </div>
-                <div className='grid gap-1'>
-                  <label htmlFor='description' className='font-medium'>Description</label>
+                <div className='grid gap-1.5'>
+                  <label htmlFor='description' className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Description</label>
                   <textarea 
                     id='description'
-                    type='text'
                     placeholder='Enter product description'
                     name='description'
                     value={data.description}
                     onChange={handleChange}
                     required
-                    multiple 
-                    rows={3}
-                    className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded resize-none'
+                    rows={4}
+                    className='px-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-secondary-200 transition-all text-sm font-medium text-gray-700 shadow-xs resize-none'
                   />
                 </div>
-                <div>
-                    <p className='font-medium'>Image</p>
-                    <div>
-                      <label htmlFor='productImage' className='bg-blue-50 h-24 border rounded flex justify-center items-center cursor-pointer'>
-                          <div className='text-center flex justify-center items-center flex-col'>
+                <div className='grid gap-1.5'>
+                    <p className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Product Images</p>
+                    <div className="grid gap-3.5">
+                      <label htmlFor='productImage' className='bg-white h-28 border-2 border-dashed border-slate-200 hover:border-secondary-200 hover:text-secondary-200 rounded-2xl flex justify-center items-center cursor-pointer text-slate-400 font-bold transition-all duration-200 text-sm shadow-xs select-none'>
+                          <div className='text-center flex justify-center items-center flex-col gap-1.5'>
                             {
                               imageLoading ?  <Loading/> : (
                                 <>
-                                   <FaCloudUploadAlt size={35}/>
-                                   <p>Upload Image</p>
+                                   <FaCloudUploadAlt size={28} className="text-gray-400 group-hover:text-secondary-200" />
+                                   <p className="text-xs uppercase tracking-wider">Upload Product Image</p>
                                 </>
                               )
                             }
@@ -203,37 +202,40 @@ const UploadProduct = () => {
                             onChange={handleUploadImage}
                           />
                       </label>
-                      {/**display uploded image*/}
-                      <div className='flex flex-wrap gap-4'>
-                        {
-                          data.image.map((img,index) =>{
-                              return(
-                                <div key={img+index} className='h-20 mt-1 w-20 min-w-20 bg-blue-50 border relative group'>
-                                  <img
-                                    src={img}
-                                    alt={img}
-                                    className='w-full h-full object-scale-down cursor-pointer' 
-                                    onClick={()=>setViewImageURL(img)}
-                                  />
-                                  <div onClick={()=>handleDeleteImage(index)} className='absolute bottom-0 right-0 p-1 bg-red-600 hover:bg-red-600 rounded text-white hidden group-hover:block cursor-pointer'>
-                                    <MdDelete/>
+                      {/**display uploaded image*/}
+                      {data.image[0] && (
+                        <div className='flex flex-wrap gap-4 bg-white p-4 rounded-2xl border border-slate-100 shadow-xs'>
+                          {
+                            data.image.map((img,index) => {
+                                return(
+                                  <div key={img+index} className='h-20 w-20 min-w-20 bg-slate-50 border border-slate-100 rounded-xl overflow-hidden relative group shadow-sm flex items-center justify-center p-1.5'>
+                                    <img
+                                      src={img}
+                                      alt={img}
+                                      className='max-h-full max-w-full object-contain cursor-pointer' 
+                                      onClick={()=>setViewImageURL(img)}
+                                    />
+                                    <div onClick={()=>handleDeleteImage(index)} className='absolute top-1 right-1 p-1.5 bg-red-500 hover:bg-red-600 rounded-lg text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer shadow-md'>
+                                      <MdDelete size={14} />
+                                    </div>
                                   </div>
-                                </div>
-                              )
-                          })
-                        }
-                      </div>
+                                )
+                            })
+                          }
+                        </div>
+                      )}
                     </div>
 
                 </div>
-                <div className='grid gap-1'>
-                  <label className='font-medium'>Category</label>
-                  <div>
+                <div className='grid gap-1.5'>
+                  <label className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Category</label>
+                  <div className="flex flex-col gap-2">
                     <select
-                      className='bg-blue-50 border w-full p-2 rounded'
+                      className='w-full p-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-secondary-200 text-sm text-gray-600 cursor-pointer font-medium shadow-xs'
                       value={selectCategory}
                       onChange={(e)=>{
                         const value = e.target.value 
+                        if (!value) return
                         const category = allCategory.find(el => el._id === value )
                         
                         setData((preve)=>{
@@ -249,37 +251,40 @@ const UploadProduct = () => {
                       {
                         allCategory.map((c,index)=>{
                           return(
-                            <option value={c?._id}>{c.name}</option>
+                            <option value={c?._id} key={c._id + "selectCat"}>{c.name}</option>
                           )
                         })
                       }
                     </select>
-                    <div className='flex flex-wrap gap-3'>
-                      {
-                        data.category.map((c,index)=>{
-                          return(
-                            <div key={c._id+index+"productsection"} className='text-sm flex items-center gap-1 bg-blue-50 mt-2'>
-                              <p>{c.name}</p>
-                              <div className='hover:text-red-500 cursor-pointer' onClick={()=>handleRemoveCategory(index)}>
-                                <IoClose size={20}/>
-                              </div>
-                            </div>
-                          )
-                        })
-                      }
-                    </div>
+                    {data.category[0] && (
+                      <div className='flex flex-wrap gap-2.5 p-2 bg-white rounded-xl border border-slate-100 shadow-xs'>
+                        {
+                          data.category.map((c,index)=>{
+                            return(
+                              <span key={c._id+index+"productsection"} className='inline-flex items-center gap-1.5 bg-slate-50 text-gray-700 font-semibold px-2.5 py-1 text-xs border border-slate-200 rounded-lg shadow-xs'>
+                                {c.name}
+                                <button type="button" className='hover:text-red-500 cursor-pointer transition-colors text-gray-400' onClick={()=>handleRemoveCategory(index)}>
+                                  <IoClose size={14}/>
+                                </button>
+                              </span>
+                            )
+                          })
+                        }
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className='grid gap-1'>
-                  <label className='font-medium'>Sub Category</label>
-                  <div>
+                <div className='grid gap-1.5'>
+                  <label className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Sub Category</label>
+                  <div className="flex flex-col gap-2">
                     <select
-                      className='bg-blue-50 border w-full p-2 rounded'
+                      className='w-full p-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-secondary-200 text-sm text-gray-600 cursor-pointer font-medium shadow-xs'
                       value={selectSubCategory}
                       onChange={(e)=>{
                         const value = e.target.value 
+                        if (!value) return
                         const subCategory = allSubCategory.find(el => el._id === value )
-
+ 
                         setData((preve)=>{
                           return{
                             ...preve,
@@ -293,30 +298,32 @@ const UploadProduct = () => {
                       {
                         allSubCategory.map((c,index)=>{
                           return(
-                            <option value={c?._id}>{c.name}</option>
+                            <option value={c?._id} key={c._id + "selectSubCat"}>{c.name}</option>
                           )
                         })
                       }
                     </select>
-                    <div className='flex flex-wrap gap-3'>
-                      {
-                        data.subCategory.map((c,index)=>{
-                          return(
-                            <div key={c._id+index+"productsection"} className='text-sm flex items-center gap-1 bg-blue-50 mt-2'>
-                              <p>{c.name}</p>
-                              <div className='hover:text-red-500 cursor-pointer' onClick={()=>handleRemoveSubCategory(index)}>
-                                <IoClose size={20}/>
-                              </div>
-                            </div>
-                          )
-                        })
-                      }
-                    </div>
+                    {data.subCategory[0] && (
+                      <div className='flex flex-wrap gap-2.5 p-2 bg-white rounded-xl border border-slate-100 shadow-xs'>
+                        {
+                          data.subCategory.map((c,index)=>{
+                            return(
+                              <span key={c._id+index+"productsection"} className='inline-flex items-center gap-1.5 bg-slate-50 text-gray-700 font-semibold px-2.5 py-1 text-xs border border-slate-200 rounded-lg shadow-xs'>
+                                {c.name}
+                                <button type="button" className='hover:text-red-500 cursor-pointer transition-colors text-gray-400' onClick={()=>handleRemoveSubCategory(index)}>
+                                  <IoClose size={14}/>
+                                </button>
+                              </span>
+                            )
+                          })
+                        }
+                      </div>
+                    )}
                   </div>
                 </div>
-
-                <div className='grid gap-1'>
-                  <label htmlFor='unit' className='font-medium'>Unit</label>
+ 
+                <div className='grid gap-1.5'>
+                  <label htmlFor='unit' className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Unit (e.g., 500g, 1L)</label>
                   <input 
                     id='unit'
                     type='text'
@@ -325,12 +332,12 @@ const UploadProduct = () => {
                     value={data.unit}
                     onChange={handleChange}
                     required
-                    className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+                    className='px-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-secondary-200 transition-all text-sm font-medium text-gray-700 shadow-xs'
                   />
                 </div>
-
-                <div className='grid gap-1'>
-                  <label htmlFor='stock' className='font-medium'>Number of Stock</label>
+ 
+                <div className='grid gap-1.5'>
+                  <label htmlFor='stock' className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Number of Stock</label>
                   <input 
                     id='stock'
                     type='number'
@@ -339,12 +346,12 @@ const UploadProduct = () => {
                     value={data.stock}
                     onChange={handleChange}
                     required
-                    className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+                    className='px-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-secondary-200 transition-all text-sm font-medium text-gray-700 shadow-xs'
                   />
                 </div>
-
-                <div className='grid gap-1'>
-                  <label htmlFor='price' className='font-medium'>Price</label>
+ 
+                <div className='grid gap-1.5'>
+                  <label htmlFor='price' className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Price (INR)</label>
                   <input 
                     id='price'
                     type='number'
@@ -353,12 +360,12 @@ const UploadProduct = () => {
                     value={data.price}
                     onChange={handleChange}
                     required
-                    className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+                    className='px-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-secondary-200 transition-all text-sm font-medium text-gray-700 shadow-xs'
                   />
                 </div>
-
-                <div className='grid gap-1'>
-                  <label htmlFor='discount' className='font-medium'>Discount</label>
+ 
+                <div className='grid gap-1.5'>
+                  <label htmlFor='discount' className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Discount (%)</label>
                   <input 
                     id='discount'
                     type='number'
@@ -367,17 +374,17 @@ const UploadProduct = () => {
                     value={data.discount}
                     onChange={handleChange}
                     required
-                    className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+                    className='px-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-secondary-200 transition-all text-sm font-medium text-gray-700 shadow-xs'
                   />
                 </div>
-
-
+ 
+ 
                 {/**add more field**/}
                   {
                     Object?.keys(data?.more_details)?.map((k,index)=>{
                         return(
-                          <div className='grid gap-1'>
-                            <label htmlFor={k} className='font-medium'>{k}</label>
+                          <div className='grid gap-1.5' key={k+index}>
+                            <label htmlFor={k} className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>{k}</label>
                             <input 
                               id={k}
                               type='text'
@@ -395,21 +402,21 @@ const UploadProduct = () => {
                                   })
                               }}
                               required
-                              className='bg-blue-50 p-2 outline-none border focus-within:border-primary-200 rounded'
+                              className='px-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-secondary-200 transition-all text-sm font-medium text-gray-700 shadow-xs'
                             />
                           </div>
                         )
                     })
                   }
-
-                <div onClick={()=>setOpenAddField(true)} className=' hover:bg-primary-200 bg-white py-1 px-3 w-32 text-center font-semibold border border-primary-200 hover:text-neutral-900 cursor-pointer rounded'>
+ 
+                <div onClick={()=>setOpenAddField(true)} className='border-2 border-dashed border-secondary-200 hover:bg-secondary-200 hover:text-white text-secondary-200 font-bold text-xs tracking-wide uppercase px-4 py-2 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer text-center select-none shadow-xs w-36 mt-2'>
                   Add Fields
                 </div>
-
+ 
                 <button
-                  className='bg-primary-100 hover:bg-primary-200 py-2 rounded font-semibold'
+                  className='w-full py-3.5 bg-secondary-200 hover:bg-secondary-200/95 rounded-xl text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 mt-4'
                 >
-                  Submit
+                  Submit Product
                 </button>
             </form>
         </div>
@@ -430,7 +437,7 @@ const UploadProduct = () => {
             />
           )
         }
-    </section>
+    </div>
   )
 }
 

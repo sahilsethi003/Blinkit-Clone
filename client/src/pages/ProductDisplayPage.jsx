@@ -11,6 +11,7 @@ import image2 from '../assets/Best_Prices_Offers.png'
 import image3 from '../assets/Wide_Assortment.png'
 import { pricewithDiscount } from '../utils/PriceWithDiscount'
 import AddToCartButton from '../components/AddToCartButton'
+import FullscreenLoader from '../components/FullscreenLoader'
 
 const ProductDisplayPage = () => {
   const params = useParams()
@@ -57,7 +58,12 @@ const ProductDisplayPage = () => {
   }
 
   return (
-    <section className='bg-slate-50 min-h-[90vh] py-8'>
+    <section className='bg-transparent min-h-[90vh] py-8'>
+      {
+        loading && (
+          <FullscreenLoader message="Loading product details..." />
+        )
+      }
       <div className='container mx-auto p-4 max-w-6xl bg-white rounded-3xl shadow-sm border border-slate-100 grid lg:grid-cols-2 gap-8'>
         
         {/** Left Column: Image and Details **/}
@@ -86,7 +92,7 @@ const ProductDisplayPage = () => {
                   data.image.map((img, index) => (
                     <div 
                       key={img + index + "point"} 
-                      className={`w-2 h-2 rounded-full transition-all duration-200 ${index === image ? "bg-green-600 w-4" : "bg-slate-200"}`}
+                      className={`w-2 h-2 rounded-full transition-all duration-200 ${index === image ? "bg-secondary-200 w-4" : "bg-slate-200"}`}
                     ></div>
                   ))
                 }
@@ -104,7 +110,7 @@ const ProductDisplayPage = () => {
                       <div 
                         onClick={() => setImage(index)}
                         className={`w-16 h-16 min-h-[4rem] min-w-[4rem] p-1 bg-white rounded-xl border-2 cursor-pointer transition-all duration-250 flex items-center justify-center overflow-hidden
-                          ${index === image ? "border-green-600 shadow-md" : "border-slate-100 hover:border-slate-300"}
+                          ${index === image ? "border-secondary-200 shadow-md" : "border-slate-100 hover:border-slate-300"}
                         `} 
                         key={img + index}
                       >
@@ -159,7 +165,7 @@ const ProductDisplayPage = () => {
           
           {/** Delivery Pill & Title **/}
           <div className='flex flex-col gap-2'>
-            <span className='bg-green-50 text-green-700 border border-green-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 w-fit'>
+            <span className='bg-emerald-50 text-secondary-200 border border-secondary-200/10 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 w-fit'>
               <FaClock className='text-xs' /> 10 Min Delivery
             </span>
             <h2 className='text-2xl lg:text-3xl font-extrabold text-slate-800 tracking-tight leading-tight mt-1'>{data.name}</h2>  

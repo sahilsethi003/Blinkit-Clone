@@ -3,7 +3,7 @@ import Axios from '../utils/Axios'
 import SummaryApi from '../common/SummaryApi'
 import { Link, useParams } from 'react-router-dom'
 import AxiosToastError from '../utils/AxiosToastError'
-import Loading from '../components/Loading'
+import FullscreenLoader from '../components/FullscreenLoader'
 import CardProduct from '../components/CardProduct'
 import { useSelector } from 'react-redux'
 import { valideURLConvert } from '../utils/valideURLConvert'
@@ -68,7 +68,7 @@ const ProductListPage = () => {
   }, [params, AllSubCategory])
 
   return (
-    <section className='sticky top-24 lg:top-20 bg-slate-50 min-h-[90vh]'>
+    <section className='sticky top-24 lg:top-20 bg-transparent min-h-[90vh]'>
       <div className='container mx-auto grid grid-cols-[100px,1fr] md:grid-cols-[220px,1fr] lg:grid-cols-[300px,1fr]'>
         
         {/** sub category sidebar **/}
@@ -86,7 +86,7 @@ const ProductListPage = () => {
                   key={s._id}
                   className={`w-full px-3 py-3 md:py-4 flex flex-col md:flex-row items-center gap-3 border-l-4 transition-all duration-250 cursor-pointer border-b border-slate-100/50
                     ${isActive 
-                      ? "border-green-600 bg-gradient-to-r from-green-50/70 to-white text-green-700 font-semibold" 
+                      ? "border-secondary-200 bg-secondary-200/5 text-secondary-200 font-bold" 
                       : "border-transparent hover:bg-slate-50 text-slate-600 hover:text-slate-900"
                     }
                   `}
@@ -106,7 +106,7 @@ const ProductListPage = () => {
         </div>
 
         {/** Product List **/}
-        <div className='flex flex-col min-h-[88vh] max-h-[88vh] overflow-y-auto bg-slate-50'>
+        <div className='flex flex-col min-h-[88vh] max-h-[88vh] overflow-y-auto bg-transparent'>
           
           {/** Header with Breadcrumb/Title **/}
           <div className='bg-white shadow-sm px-6 py-4 flex items-center justify-between sticky top-0 z-20 border-b border-slate-200'>
@@ -119,11 +119,12 @@ const ProductListPage = () => {
           {/** Product Grid **/}
           <div className='p-6 flex-1'>
             {
-              loading && data.length === 0 ? (
-                <div className='flex items-center justify-center min-h-[50vh]'>
-                  <Loading />
-                </div>
-              ) : data.length === 0 ? (
+              loading && data.length === 0 && (
+                <FullscreenLoader message="Loading products..." />
+              )
+            }
+            {
+              data.length === 0 && !loading ? (
                 <div className='flex flex-col items-center justify-center min-h-[50vh] bg-white rounded-2xl shadow-sm border border-slate-100 p-8 text-center'>
                   <div className='text-slate-300 text-6xl mb-4'>🛒</div>
                   <h4 className='text-lg font-semibold text-slate-700'>No Products Found</h4>

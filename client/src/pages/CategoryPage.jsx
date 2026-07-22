@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import UploadCategoryModel from '../components/UploadCategoryModel'
-import Loading from '../components/Loading'
+import FullscreenLoader from '../components/FullscreenLoader'
 import NoData from '../components/NoData'
 import Axios from '../utils/Axios'
 import SummaryApi from '../common/SummaryApi'
@@ -122,7 +122,7 @@ const CategoryPage = () => {
 
         {
             loading && (
-                <Loading/>
+                <FullscreenLoader message="Loading categories..."/>
             )
         }
 

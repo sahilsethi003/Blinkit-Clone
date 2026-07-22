@@ -66,17 +66,20 @@ const UploadCategoryModel = ({close, fetchData}) => {
         })
     }
   return (
-    <section className='fixed top-0 bottom-0 left-0 right-0 p-4 bg-neutral-800 bg-opacity-60 flex items-center justify-center'>
-        <div className='bg-white max-w-4xl w-full p-4 rounded'>
-            <div className='flex items-center justify-between'>
-                <h1 className='font-semibold'>Category</h1>
-                <button onClick={close} className='w-fit block ml-auto'>
-                    <IoClose size={25}/>
+    <section className='fixed inset-0 p-4 bg-neutral-900/60 backdrop-blur-xs flex items-center justify-center z-50 transition-all duration-300'>
+        <div className='bg-white max-w-2xl w-full p-6 rounded-2xl shadow-2xl border border-slate-100 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-200'>
+            <div className='flex items-center justify-between pb-3 border-b border-slate-100'>
+                <h1 className='text-lg font-bold text-gray-800 flex items-center gap-2'>
+                    <span className="w-1 h-5 bg-secondary-200 rounded-full"></span>
+                    Add Category
+                </h1>
+                <button onClick={close} className='text-gray-400 hover:text-gray-600 p-1.5 hover:bg-slate-100 rounded-full transition-all'>
+                    <IoClose size={20}/>
                 </button>
             </div>
-            <form className='my-3 grid gap-2' onSubmit={handleSubmit}>
-                <div className='grid gap-1'>
-                    <label id='categoryName'>Name</label>
+            <form className='grid gap-4 mt-2' onSubmit={handleSubmit}>
+                <div className='grid gap-1.5'>
+                    <label id='categoryName' className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Name</label>
                     <input
                         type='text'
                         id='categoryName'
@@ -84,30 +87,30 @@ const UploadCategoryModel = ({close, fetchData}) => {
                         value={data.name}
                         name='name'
                         onChange={handleOnChange}
-                        className='bg-blue-50 p-2 border border-blue-100 focus-within:border-primary-200 outline-none rounded'
+                        className='px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-secondary-200 transition-all text-sm font-medium text-gray-700'
                     />
                 </div>
-                <div className='grid gap-1'>
-                    <p>Image</p>
-                    <div className='flex gap-4 flex-col lg:flex-row items-center'>
-                        <div className='border bg-blue-50 h-36 w-full lg:w-36 flex items-center justify-center rounded'>
+                <div className='grid gap-1.5'>
+                    <p className='font-semibold text-xs text-gray-600 uppercase tracking-wider'>Image</p>
+                    <div className='flex gap-4 items-center'>
+                        <div className='border border-slate-200 bg-slate-50 h-28 w-28 flex items-center justify-center rounded-xl p-2 overflow-hidden shadow-inner'>
                             {
                                 data.image ? (
                                     <img
                                         alt='category'
                                         src={data.image}
-                                        className='w-full h-full object-scale-down'
+                                        className='max-h-full max-w-full object-contain'
                                     />
                                 ) : (
-                                    <p className='text-sm text-neutral-500'>No Image</p>
+                                    <p className='text-xs text-neutral-400 font-medium'>No Image</p>
                                 )
                             }
                             
                         </div>
                         <label htmlFor='uploadCategoryImage'>
-                            <div  className={`
-                            ${!data.name ? "bg-gray-300" : "border-primary-200 hover:bg-primary-100" }  
-                                px-4 py-2 rounded cursor-pointer border font-medium
+                            <div className={`
+                            ${!data.name ? "bg-gray-300 text-gray-500 cursor-not-allowed" : "border-2 border-dashed border-secondary-200 text-secondary-200 hover:bg-secondary-200 hover:text-white" }  
+                                px-4 py-2 rounded-xl cursor-pointer border font-bold text-xs tracking-wide uppercase transition-all select-none active:scale-95
                             `}>Upload Image</div>
 
                             <input disabled={!data.name} onChange={handleUploadCategoryImage} type='file' id='uploadCategoryImage' className='hidden'/>
@@ -117,10 +120,9 @@ const UploadCategoryModel = ({close, fetchData}) => {
                 </div>
 
                 <button
-                    className={`
-                    ${data.name && data.image ? "bg-primary-200 hover:bg-primary-100" : "bg-gray-300 "}
-                    py-2    
-                    font-semibold 
+                    disabled={!(data.name && data.image)}
+                    className={`w-full py-3 rounded-xl font-bold text-sm tracking-wide shadow-sm transition-all duration-200 active:scale-95 text-white mt-4
+                    ${data.name && data.image ? "bg-secondary-200 hover:bg-secondary-200/90 hover:shadow" : "bg-gray-300 cursor-not-allowed text-gray-500 "}
                     `}
                 >Add Category</button>
             </form>

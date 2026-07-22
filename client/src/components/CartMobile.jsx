@@ -15,20 +15,20 @@ const CartMobileLink = () => {
         {
             cartItem[0] && (
             <div className='sticky bottom-4 p-2'>
-            <div className='bg-green-600 px-2 py-1 rounded text-neutral-100 text-sm  flex items-center justify-between gap-3 lg:hidden'>
+            <div className='bg-secondary-200 px-4 py-2.5 rounded-xl text-neutral-100 text-sm flex items-center justify-between gap-3 lg:hidden shadow-lg border border-secondary-200/20 active:scale-98 transition-all duration-200'>
                     <div className='flex items-center gap-2'>
-                        <div className='p-2 bg-green-500 rounded w-fit'>
-                            <FaCartShopping/>
+                        <div className='p-2 bg-white/15 rounded-lg w-fit'>
+                            <FaCartShopping size={14}/>
                         </div>
-                        <div className='text-xs'>
-                                <p>{totalQty} items</p>
-                                <p>{DisplayPriceInRupees(totalPrice)}</p>
+                        <div className='text-xs font-bold leading-tight'>
+                                <p>{totalQty} {totalQty === 1 ? 'item' : 'items'}</p>
+                                <p className="text-sm">{DisplayPriceInRupees(totalPrice)}</p>
                         </div>
                     </div>
 
-                    <Link to={"/cart"} className='flex items-center gap-1'>
-                        <span className='text-sm'>View Cart</span>
-                        <FaCaretRight/>
+                    <Link to={"/cart"} className='flex items-center gap-1 font-bold text-xs uppercase tracking-wider'>
+                        <span>View Cart</span>
+                        <FaCaretRight size={14}/>
                     </Link>
                 </div>
             </div>

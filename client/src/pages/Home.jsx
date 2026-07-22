@@ -1,10 +1,9 @@
 import React from 'react'
-import banner from '../assets/banner.jpg'
-import bannerMobile from '../assets/banner-mobile.jpg'
 import { useSelector } from 'react-redux'
 import { valideURLConvert } from '../utils/valideURLConvert'
 import {Link, useNavigate} from 'react-router-dom'
 import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay'
+import FullscreenLoader from '../components/FullscreenLoader'
 
 const Home = () => {
   const loadingCategory = useSelector(state => state.product.loadingCategory)
@@ -29,19 +28,34 @@ const Home = () => {
 
 
   return (
-   <section className='bg-white'>
-      <div className='container mx-auto'>
-          <div className={`w-full h-full min-h-48 bg-blue-100 rounded ${!banner && "animate-pulse my-2" } `}>
-              <img
-                src={banner}
-                className='w-full h-full hidden lg:block'
-                alt='banner' 
-              />
-              <img
-                src={bannerMobile}
-                className='w-full h-full lg:hidden'
-                alt='banner' 
-              />
+   <section className='bg-transparent py-4 lg:py-6'>
+      {
+        loadingCategory && (
+          <FullscreenLoader />
+        )
+      }
+      <div className='container mx-auto px-4'>
+          <div className='relative w-full h-48 lg:h-64 rounded-3xl overflow-hidden shadow-sm border border-slate-100/50 bg-gradient-to-r from-secondary-200 to-emerald-800 text-white flex items-center p-6 lg:p-12 mb-6'>
+              {/* Decorative background image with opacity overlay */}
+              <div className="absolute inset-0 z-0 opacity-20">
+                  <img 
+                      src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&auto=format&fit=crop&q=80" 
+                      className="w-full h-full object-cover"
+                      alt="groceries background"
+                  />
+              </div>
+              
+              <div className='relative z-10 max-w-lg flex flex-col gap-2'>
+                  <span className='bg-primary-200 text-secondary-100 font-extrabold px-3 py-1 rounded-full text-[10px] uppercase tracking-wider w-fit'>
+                      ⚡ Superfast Delivery
+                  </span>
+                  <h1 className='text-2xl lg:text-4xl font-black tracking-tight leading-none'>
+                      Fresh Groceries <br className="hidden sm:inline"/>Delivered in Minutes
+                  </h1>
+                  <p className='text-xs lg:text-sm text-emerald-100 font-medium max-w-sm'>
+                      Get the best deals on daily essentials, fruits, vegetables, and pantry items directly at your doorstep.
+                  </p>
+              </div>
           </div>
       </div>
       

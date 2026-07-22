@@ -4,6 +4,7 @@ import AxiosToastError from '../utils/AxiosToastError'
 import Axios from '../utils/Axios'
 import SummaryApi from '../common/SummaryApi'
 import DisplayTable from '../components/DisplayTable'
+import FullscreenLoader from '../components/FullscreenLoader'
 import { createColumnHelper } from '@tanstack/react-table'
 import ViewImage from '../components/ViewImage'
 import { LuPencil } from "react-icons/lu";
@@ -143,6 +144,12 @@ const SubCategoryPage = () => {
             />
         </div>
 
+
+        {
+          loading && (
+            <FullscreenLoader message="Loading subcategories..."/>
+          )
+        }
 
         {
           openAddSubCategory && (

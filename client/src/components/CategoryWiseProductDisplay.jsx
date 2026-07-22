@@ -71,8 +71,8 @@ const CategoryWiseProductDisplay = ({ id, name }) => {
     return (
         <div>
             <div className='container mx-auto p-4 flex items-center justify-between gap-4'>
-                <h3 className='font-semibold text-lg md:text-xl'>{name}</h3>
-                <Link  to={redirectURL} className='text-green-600 hover:text-green-400'>See All</Link>
+                <h3 className='font-bold text-gray-800 text-lg md:text-xl'>{name}</h3>
+                <Link  to={redirectURL} className='text-secondary-200 hover:text-secondary-200/80 font-bold text-sm transition-colors duration-200'>See All</Link>
             </div>
             <div className='relative flex items-center '>
                 <div className=' flex gap-4 md:gap-6 lg:gap-8 container mx-auto px-4 overflow-x-scroll scrollbar-none scroll-smooth' ref={containerRef}>
