@@ -9,9 +9,20 @@ import AddToCartButton from './AddToCartButton'
 import { pricewithDiscount } from '../utils/PriceWithDiscount'
 import imageEmpty from '../assets/empty_cart.webp'
 import toast from 'react-hot-toast'
+import PromoCodeSection from './PromoCodeSection'
+import FreeDeliveryProgressBar from './FreeDeliveryProgressBar'
 
 const DisplayCartItem = ({close}) => {
-    const { notDiscountTotalPrice, totalPrice ,totalQty} = useGlobalContext()
+    const { 
+        notDiscountTotalPrice, 
+        totalPrice, 
+        totalQty, 
+        promoDiscountAmount, 
+        finalGrandTotal,
+        isFreeDelivery,
+        deliveryCharge
+    } = useGlobalContext()
+
     const cartItem  = useSelector(state => state.cartItem.cart)
     const user = useSelector(state => state.user)
     const navigate = useNavigate()
@@ -42,15 +53,19 @@ const DisplayCartItem = ({close}) => {
                 </button>
             </div>
 
-            <div className='flex-grow overflow-y-auto bg-slate-50/50 p-4 flex flex-col gap-4'>
+            <div className='flex-grow overflow-y-auto bg-slate-50/50 p-4 flex flex-col gap-4 scrollbar-none [scrollbar-width:none]'>
                 {/***display items */}
                 {
                     cartItem[0] ? (
                         <>
+                            {/** Free Delivery Tracker */}
+                            <FreeDeliveryProgressBar />
+
                             <div className='flex items-center justify-between px-4 py-2.5 bg-emerald-50 text-secondary-200 rounded-xl text-xs font-bold tracking-wide uppercase'>
                                     <p>Your total savings</p>
-                                    <p>{DisplayPriceInRupees(notDiscountTotalPrice - totalPrice )}</p>
+                                    <p>{DisplayPriceInRupees(notDiscountTotalPrice - totalPrice + promoDiscountAmount)}</p>
                             </div>
+
                             <div className='bg-white rounded-2xl p-4 grid gap-5 border border-slate-100 shadow-sm'>
                                     {
                                         cartItem[0] && (
@@ -77,6 +92,11 @@ const DisplayCartItem = ({close}) => {
                                         )
                                     }
                             </div>
+
+                            {/** Promo Code Section */}
+                            <PromoCodeSection />
+
+                            {/** Bill Details */}
                             <div className='bg-white p-4 rounded-2xl border border-slate-100 shadow-sm'>
                                 <h3 className='font-bold text-xs text-gray-400 uppercase tracking-wider mb-2.5'>Bill details</h3>
                                 <div className='flex gap-4 justify-between text-sm text-gray-600 mb-2'>
@@ -87,13 +107,31 @@ const DisplayCartItem = ({close}) => {
                                     <p>Quantity total</p>
                                     <p className='font-semibold text-gray-800'>{totalQty} {totalQty === 1 ? 'item' : 'items'}</p>
                                 </div>
+
+                                {Boolean(promoDiscountAmount) && (
+                                    <div className='flex gap-4 justify-between text-sm text-secondary-200 font-extrabold mb-2'>
+                                        <p className='flex items-center gap-1.5'>
+                                            <span>🎟️</span>
+                                            <span>Promo Discount</span>
+                                        </p>
+                                        <p>-{DisplayPriceInRupees(promoDiscountAmount)}</p>
+                                    </div>
+                                )}
+
                                 <div className='flex gap-4 justify-between text-sm text-gray-600 pb-3 border-b border-slate-200/50 mb-3'>
                                     <p>Delivery Charge</p>
-                                    <p className='text-secondary-200 font-bold uppercase text-xs tracking-wider'>Free</p>
+                                    {isFreeDelivery ? (
+                                        <p className='text-secondary-200 font-bold uppercase text-xs tracking-wider flex items-center gap-1'>
+                                            <span className='line-through text-slate-400 font-normal'>₹29</span>
+                                            <span>FREE</span>
+                                        </p>
+                                    ) : (
+                                        <p className='text-slate-800 font-extrabold text-xs'>₹29</p>
+                                    )}
                                 </div>
                                 <div className='font-bold text-base flex items-center justify-between text-gray-800'>
-                                    <p >Grand total</p>
-                                    <p className="text-secondary-200 font-black">{DisplayPriceInRupees(totalPrice)}</p>
+                                    <p>Grand total</p>
+                                    <p className="text-secondary-200 font-black text-lg">{DisplayPriceInRupees(finalGrandTotal)}</p>
                                 </div>
                             </div>
                         </>
@@ -115,11 +153,14 @@ const DisplayCartItem = ({close}) => {
             {
                 cartItem[0] && (
                     <div className='p-4 border-t border-slate-100 bg-white'>
-                        <div className='bg-secondary-200 text-neutral-100 px-5 font-bold text-sm py-3.5 rounded-xl flex items-center gap-4 justify-between shadow-md hover:shadow-lg transition-all duration-200 active:scale-98'>
-                            <div className="font-extrabold text-base">
-                                {DisplayPriceInRupees(totalPrice)}
+                        <div className='bg-secondary-200 text-neutral-100 px-5 font-bold text-sm py-3 rounded-xl flex items-center gap-4 justify-between shadow-md hover:shadow-lg transition-all duration-200 active:scale-98'>
+                            <div>
+                                <p className="font-black text-base">{DisplayPriceInRupees(finalGrandTotal)}</p>
+                                {Boolean(promoDiscountAmount) && (
+                                    <p className='text-[10px] text-white/80 font-bold'>Includes promo discount</p>
+                                )}
                             </div>
-                            <button onClick={redirectToCheckoutPage} className='flex items-center gap-1.5 font-bold uppercase tracking-wider text-xs'>
+                            <button onClick={redirectToCheckoutPage} className='flex items-center gap-1.5 font-bold uppercase tracking-wider text-xs cursor-pointer'>
                                 Proceed to checkout
                                 <span><FaCaretRight size={14}/></span>
                             </button>

@@ -8,6 +8,8 @@ import Axios from '../utils/Axios'
 import SummaryApi from '../common/SummaryApi'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import PromoCodeSection from '../components/PromoCodeSection'
+import FreeDeliveryProgressBar from '../components/FreeDeliveryProgressBar'
 
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
@@ -20,7 +22,18 @@ const loadRazorpayScript = () => {
 };
 
 const CheckoutPage = () => {
-  const { notDiscountTotalPrice, totalPrice, totalQty, fetchCartItem,fetchOrder } = useGlobalContext()
+  const { 
+    notDiscountTotalPrice, 
+    totalPrice, 
+    totalQty, 
+    fetchCartItem, 
+    fetchOrder, 
+    promoDiscountAmount, 
+    finalGrandTotal,
+    isFreeDelivery,
+    deliveryCharge 
+  } = useGlobalContext()
+
   const [openAddress, setOpenAddress] = useState(false)
   const addressList = useSelector(state => state.addresses.addressList)
   const [selectAddress, setSelectAddress] = useState(0)
@@ -40,7 +53,7 @@ const CheckoutPage = () => {
               list_items : cartItemsList,
               addressId : addressList[selectAddress]?._id,
               subTotalAmt : totalPrice,
-              totalAmt :  totalPrice,
+              totalAmt : finalGrandTotal,
             }
           })
 
@@ -84,7 +97,7 @@ const CheckoutPage = () => {
         const response = await Axios({
             ...SummaryApi.createRazorpayOrder,
             data : {
-              amount: Math.round(totalPrice * 100) // amount in paise
+              amount: Math.round(finalGrandTotal * 100) // amount in paise
             }
         })
 
@@ -110,7 +123,7 @@ const CheckoutPage = () => {
                             list_items: cartItemsList,
                             addressId: addressList[selectAddress]?._id,
                             subTotalAmt: totalPrice,
-                            totalAmt: totalPrice
+                            totalAmt: finalGrandTotal
                         }
                     })
 
@@ -201,32 +214,58 @@ const CheckoutPage = () => {
 
         </div>
 
-        <div className='w-full max-w-md bg-white p-5 rounded-2xl shadow-sm border border-slate-100 h-fit'>
-          {/**summary**/}
-          <h3 className='text-lg font-bold text-gray-800 pb-3 border-b border-slate-100 mb-4'>Order Summary</h3>
-          <div className='bg-slate-50/50 p-4 rounded-xl border border-slate-100/50 mb-5'>
-            <h3 className='font-bold text-xs text-gray-400 uppercase tracking-wider mb-2.5'>Bill details</h3>
-            <div className='flex gap-4 justify-between text-sm text-gray-600 mb-2'>
-              <p>Items total</p>
-              <p className='flex items-center gap-2'><span className='line-through text-neutral-400'>{DisplayPriceInRupees(notDiscountTotalPrice)}</span><span className="font-bold text-gray-800">{DisplayPriceInRupees(totalPrice)}</span></p>
-            </div>
-            <div className='flex gap-4 justify-between text-sm text-gray-600 mb-2'>
-              <p>Quantity total</p>
-              <p className='font-semibold text-gray-800'>{totalQty} {totalQty === 1 ? 'item' : 'items'}</p>
-            </div>
-            <div className='flex gap-4 justify-between text-sm text-gray-600 pb-3 border-b border-slate-200/50 mb-3'>
-              <p>Delivery Charge</p>
-              <p className='text-secondary-200 font-bold uppercase text-xs tracking-wider'>Free</p>
-            </div>
-            <div className='font-bold text-base flex items-center justify-between text-gray-800'>
-              <p>Grand total</p>
-              <p className="text-lg text-secondary-200 font-black">{DisplayPriceInRupees(totalPrice)}</p>
-            </div>
-          </div>
-          <div className='w-full flex flex-col gap-3.5'>
-            <button className='w-full py-3 bg-secondary-200 hover:bg-secondary-200/95 rounded-xl text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 active:scale-95' onClick={handleOnlinePayment}>Online Payment</button>
+        <div className='w-full max-w-md flex flex-col gap-4'>
+          {/** Free Delivery Tracker */}
+          <FreeDeliveryProgressBar />
 
-            <button className='w-full py-3 border-2 border-secondary-200 font-bold text-secondary-200 rounded-xl hover:bg-emerald-50/70 transition-all duration-200 text-sm active:scale-95' onClick={handleCashOnDelivery}>Cash on Delivery</button>
+          {/** Promo Code Section */}
+          <PromoCodeSection />
+
+          {/** Summary Box */}
+          <div className='w-full bg-white p-5 rounded-2xl shadow-sm border border-slate-100 h-fit'>
+            <h3 className='text-lg font-bold text-gray-800 pb-3 border-b border-slate-100 mb-4'>Order Summary</h3>
+            <div className='bg-slate-50/50 p-4 rounded-xl border border-slate-100/50 mb-5'>
+              <h3 className='font-bold text-xs text-gray-400 uppercase tracking-wider mb-2.5'>Bill details</h3>
+              <div className='flex gap-4 justify-between text-sm text-gray-600 mb-2'>
+                <p>Items total</p>
+                <p className='flex items-center gap-2'><span className='line-through text-neutral-400'>{DisplayPriceInRupees(notDiscountTotalPrice)}</span><span className="font-bold text-gray-800">{DisplayPriceInRupees(totalPrice)}</span></p>
+              </div>
+              <div className='flex gap-4 justify-between text-sm text-gray-600 mb-2'>
+                <p>Quantity total</p>
+                <p className='font-semibold text-gray-800'>{totalQty} {totalQty === 1 ? 'item' : 'items'}</p>
+              </div>
+
+              {Boolean(promoDiscountAmount) && (
+                <div className='flex gap-4 justify-between text-sm text-secondary-200 font-extrabold mb-2'>
+                  <p className='flex items-center gap-1.5'>
+                    <span>🎟️</span>
+                    <span>Promo Discount</span>
+                  </p>
+                  <p>-{DisplayPriceInRupees(promoDiscountAmount)}</p>
+                </div>
+              )}
+
+              <div className='flex gap-4 justify-between text-sm text-gray-600 pb-3 border-b border-slate-200/50 mb-3'>
+                <p>Delivery Charge</p>
+                {isFreeDelivery ? (
+                    <p className='text-secondary-200 font-bold uppercase text-xs tracking-wider flex items-center gap-1'>
+                        <span className='line-through text-slate-400 font-normal'>₹29</span>
+                        <span>FREE</span>
+                    </p>
+                ) : (
+                    <p className='text-slate-800 font-extrabold text-xs'>₹29</p>
+                )}
+              </div>
+              <div className='font-bold text-base flex items-center justify-between text-gray-800'>
+                <p>Grand total</p>
+                <p className="text-lg text-secondary-200 font-black">{DisplayPriceInRupees(finalGrandTotal)}</p>
+              </div>
+            </div>
+            <div className='w-full flex flex-col gap-3.5'>
+              <button className='w-full py-3 bg-secondary-200 hover:bg-secondary-200/95 rounded-xl text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 cursor-pointer' onClick={handleOnlinePayment}>Online Payment</button>
+
+              <button className='w-full py-3 border-2 border-secondary-200 font-bold text-secondary-200 rounded-xl hover:bg-emerald-50/70 transition-all duration-200 text-sm active:scale-95 cursor-pointer' onClick={handleCashOnDelivery}>Cash on Delivery</button>
+            </div>
           </div>
         </div>
       </div>
