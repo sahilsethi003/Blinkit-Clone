@@ -1,4 +1,4 @@
-# Binkeyit - Full-Stack Blinkit Clone (MERN)
+# Grocify - Full-Stack Blinkit Clone (MERN)
 
 [![React](https://img.shields.io/badge/React-18-blue.svg?logo=react)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5-64748B.svg?logo=vite)](https://vitejs.dev/)
@@ -9,24 +9,28 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248.svg?logo=mongodb)](https://www.mongodb.com/)
 [![Stripe](https://img.shields.io/badge/Stripe-Payment-635BFF.svg?logo=stripe)](https://stripe.com/)
 
-Binkeyit is a modern, high-performance, and feature-rich full-stack e-commerce application modeled after the popular instant grocery delivery app **Blinkit**. Built using the MERN stack (MongoDB, Express, React, Node.js), this project demonstrates a highly responsive storefront, robust state management, a comprehensive admin dashboard, secure JWT authentication with email validation, and Stripe payment integration.
+Grocify is a modern, high-performance, and feature-rich full-stack e-commerce application modeled after the popular instant grocery delivery app **Blinkit**. Built using the MERN stack (MongoDB, Express, React, Node.js), this project demonstrates a highly responsive storefront, robust state management, a comprehensive admin dashboard, secure JWT authentication with email validation, and Stripe payment integration.
 
 ---
 
 ## 🚀 Key Features
 
-### 🛒 Customer Storefront
+### 🛒 Customer Storefront & Navigation
 *   **Dynamic Product Catalog:** Categorized and sub-categorized grocery catalog with search & filter capabilities.
-*   **Search & Search Suggestion:** Fast search functionality supporting real-time listing updates.
+*   **Isolated Product Interactions:** Smooth image zoom and title hover effects scoped independently per product card.
+*   **Blinkit-Style Header:** Clean navbar featuring an instant search bar, location picker, Blinkit-style crisp white pill **Login** badge, and a login-guarded **My Cart** button.
 *   **Interactive Cart System:** Instant item additions, quantity modifications, price summaries, and real-time validation.
 *   **Stripe Checkout:** Secure payment processing with Stripe checkout sessions, order logging, and callback handling.
 *   **Address Management:** Save, retrieve, and select multiple shipping addresses.
 *   **Order History:** Detailed view of past orders with invoice summaries.
 
 ### 🔐 Security & Auth System
-*   **Double-Token JWT Auth:** Secure user login utilizing Access Token & Refresh Token storage in HTTP-only cookies.
+*   **Double-Token JWT Auth Architecture:**
+    *   **Access Token:** Short-lived token (`5 Hours` validity) signed with `SECRET_KEY_ACCESS_TOKEN`.
+    *   **Refresh Token:** Long-lived token (`7 Days` validity) signed with `SECRET_KEY_REFRESH_TOKEN` and persisted in MongoDB.
+*   **Fresh Light Glassmorphism Auth UI:** Standardized light-themed authentication container (`AuthLayout.jsx`) with ambient glowing mint/amber light orbs, geometric grid overlay, and floating grocery/security badges across **Login**, **Register**, **Forgot Password**, **OTP Verification**, and **Reset Password** pages.
 *   **Email Verification:** Registration validation and account verification emails powered by **Resend**.
-*   **Password Reset Pipeline:** OTP-based verification flow for forgotten passwords.
+*   **Password Reset Pipeline:** 6-digit numeric OTP-based verification flow for forgotten passwords.
 *   **Secure API Access:** Helmet protection, CORS policy limits, and standard sanitization middleware.
 
 ### 🛡️ Admin Dashboard
@@ -51,6 +55,7 @@ Binkeyit is a modern, high-performance, and feature-rich full-stack e-commerce a
 ### Server (Backend)
 *   **Runtime:** Node.js (Express framework)
 *   **Database:** MongoDB via Mongoose ODM
+*   **Authentication:** JSON Web Tokens (Access Token: `5h`, Refresh Token: `7d`)
 *   **File Handling:** Multer (Memory Storage) & Cloudinary Node SDK
 *   **Emails:** Resend API
 *   **Security:** Helmet, CORS, Cookie Parser, BcryptJS
@@ -64,8 +69,9 @@ BlinkIt-Clone-Full-Stack-Ecommerce/
 │
 ├── client/                     # Vite + React Frontend
 │   ├── src/
-│   │   ├── components/         # Reusable UI elements (Cart, Header, etc.)
-│   │   ├── pages/              # Page layouts (Home, Checkout, Admin, etc.)
+│   │   ├── components/         # Reusable UI elements (Cart, Header, CardProduct, etc.)
+│   │   ├── layouts/            # AuthLayout and application wrappers
+│   │   ├── pages/              # Page views (Home, Login, Register, Checkout, Admin, etc.)
 │   │   ├── store/              # Redux slices and store configuration
 │   │   ├── utils/              # Client-side helpers and API configurations
 │   │   └── App.jsx             # Main Application Routing
@@ -78,13 +84,13 @@ BlinkIt-Clone-Full-Stack-Ecommerce/
 │   ├── middleware/             # Route guards (Auth, Admin verification)
 │   ├── models/                 # Mongoose schemas (User, Product, Order)
 │   ├── route/                  # REST APIs endpoints mapping
-│   ├── utils/                  # Cloudinary uploads & email templates
+│   ├── utils/                  # Token generators (5h access / 7d refresh) & email templates
 │   ├── seed.js                 # Initial Database Seed Script
 │   ├── vercel.json             # Deployment settings
 │   ├── .env                    # Server Environment variables
 │   └── package.json            
 │
-└── .gitignore                  # Project-wide Git ignore file
+└── README.md                   # Project documentation
 ```
 
 ---
@@ -101,7 +107,7 @@ cd BlinkIt-Clone-Full-Stack-Ecommerce
 You will need to set up environment variables for both the **client** and **server** directories.
 
 #### Server Settings (`server/.env`)
-Create a file named `.env` inside the `server/` directory and populate it:
+Create a file named `.env` inside the `server/` directory:
 ```env
 PORT=8080
 FRONTEND_URL=http://localhost:5173
@@ -121,7 +127,7 @@ STRIPE_ENPOINT_WEBHOOK_SECRET_KEY=whsec_your_stripe_webhook_secret_key
 ```
 
 #### Client Settings (`client/.env`)
-Create a file named `.env` inside the `client/` directory and populate it:
+Create a file named `.env` inside the `client/` directory:
 ```env
 VITE_API_URL=http://localhost:8080
 VITE_STRIPE_PUBLIC_KEY=pk_test_your_stripe_publishable_key

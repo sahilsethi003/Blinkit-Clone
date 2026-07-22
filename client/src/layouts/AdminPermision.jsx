@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import isAdmin from '../utils/isAdmin'
+import AccessDenied from '../pages/AccessDenied'
 
 const AdminPermision = ({children}) => {
     const user = useSelector(state => state.user)
@@ -8,7 +9,7 @@ const AdminPermision = ({children}) => {
   return (
     <>
         {
-            isAdmin(user.role) ?  children : <p className='text-red-600 bg-red-100 p-4'>Do not have permission</p>
+            isAdmin(user.role) ?  children : <AccessDenied />
         }
     </>
   )

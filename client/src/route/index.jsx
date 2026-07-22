@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
 import SearchPage from "../pages/SearchPage";
@@ -23,6 +23,8 @@ import CartMobile from "../pages/CartMobile";
 import CheckoutPage from "../pages/CheckoutPage";
 import Success from "../pages/Success";
 import Cancel from "../pages/Cancel";
+import PageNotFound from "../pages/PageNotFound";
+import AccessDenied from "../pages/AccessDenied";
 
 const router = createBrowserRouter([
     {
@@ -66,6 +68,10 @@ const router = createBrowserRouter([
                 element : <Dashboard/>,
                 children : [
                     {
+                        path : "",
+                        element : <Navigate to="profile" replace />
+                    },
+                    {
                         path : "profile",
                         element : <Profile/>
                     },
@@ -96,13 +102,8 @@ const router = createBrowserRouter([
                 ]
             },
             {
-                path : ":category",
-                children : [
-                    {
-                        path : ":subCategory",
-                        element : <ProductListPage/>
-                    }
-                ]
+                path : ":category/:subCategory",
+                element : <ProductListPage/>
             },
             {
                 path : "product/:product",
@@ -123,6 +124,14 @@ const router = createBrowserRouter([
             {
                 path : 'cancel',
                 element : <Cancel/>
+            },
+            {
+                path : "access-denied",
+                element : <AccessDenied/>
+            },
+            {
+                path : "*",
+                element : <PageNotFound/>
             }
         ]
     }

@@ -95,8 +95,8 @@ const CheckoutPage = () => {
             key: import.meta.env.VITE_RAZORPAY_KEY_ID,
             amount: orderData.amount,
             currency: orderData.currency,
-            name: "Binkeyit",
-            description: "Full-Stack Blinkit Clone Payment",
+            name: "Grocify",
+            description: "Full-Stack Grocify Clone Payment",
             order_id: orderData.order_id,
             handler: async function (response) {
                 toast.loading("Verifying payment...")

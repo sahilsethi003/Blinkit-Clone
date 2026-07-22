@@ -80,14 +80,22 @@ function App() {
     <GlobalProvider> 
       {
         appLoading && (
-          <FullscreenLoader message="Welcome to Binkeyit! Getting things ready..." />
+          <FullscreenLoader message="Welcome to Grocify! Getting things ready..." />
         )
       }
-      <Header/>
+      {
+        !['/login', '/register', '/forgot-password', '/reset-password', '/verification-otp'].includes(location.pathname) && (
+          <Header/>
+        )
+      }
       <main className='min-h-[78vh]'>
           <Outlet/>
       </main>
-      <Footer/>
+      {
+        !['/login', '/register', '/forgot-password', '/reset-password', '/verification-otp'].includes(location.pathname) && (
+          <Footer/>
+        )
+      }
       <Toaster position='top-right'/>
       {
         location.pathname !== '/checkout' && (

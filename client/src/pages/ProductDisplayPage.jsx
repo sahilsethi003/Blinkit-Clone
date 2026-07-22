@@ -214,7 +214,7 @@ const ProductDisplayPage = () => {
 
           {/** Why Shop Grid **/}
           <div className='flex flex-col gap-4 border-t border-slate-100 pt-6'>
-            <h4 className='font-bold text-slate-800 text-sm tracking-wider uppercase'>Why shop from Binkeyit?</h4>
+            <h4 className='font-bold text-slate-800 text-sm tracking-wider uppercase'>Why shop from Grocify?</h4>
             <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
               <div className='flex flex-col items-center text-center p-4 bg-slate-50 rounded-2xl border border-slate-100/50'>
                 <img src={image1} alt='superfast delivery' className='w-14 h-14 object-contain mb-2' />
