@@ -78,6 +78,15 @@ const UserMenu = ({close}) => {
               )
             }
 
+            {
+              isAdmin(user.role) && (
+                <Link onClick={handleClose} to={"/dashboard/promocode"} className='px-3 py-2 hover:bg-slate-50 hover:text-secondary-200 rounded-lg transition-all duration-200 font-bold text-gray-700 flex items-center justify-between'>
+                  <span>Promo Codes</span>
+                  <span className='bg-emerald-100 text-secondary-200 text-[10px] px-1.5 py-0.5 rounded font-black'>NEW</span>
+                </Link>
+              )
+            }
+
             <Link onClick={handleClose} to={"/dashboard/myorders"} className='px-3 py-2 hover:bg-slate-50 hover:text-secondary-200 rounded-lg transition-all duration-200 font-bold text-gray-700'>My Orders</Link>
 
             <Link onClick={handleClose} to={"/dashboard/address"} className='px-3 py-2 hover:bg-slate-50 hover:text-secondary-200 rounded-lg transition-all duration-200 font-bold text-gray-700'>Save Address</Link>

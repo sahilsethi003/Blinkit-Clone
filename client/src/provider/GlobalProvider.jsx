@@ -28,8 +28,26 @@ const GlobalProvider = ({children}) => {
     const [notDiscountTotalPrice, setNotDiscountTotalPrice] = useState(0)
     const [totalQty, setTotalQty] = useState(0)
     const [appliedPromoCode, setAppliedPromoCode] = useState(null)
+    const [promoCodesList, setPromoCodesList] = useState(AVAILABLE_PROMO_CODES)
     const cartItem = useSelector(state => state.cartItem.cart)
     const user = useSelector(state => state?.user)
+
+    const fetchPublicPromoCodes = async () => {
+        try {
+            const response = await Axios({
+                ...SummaryApi.getPublicPromoCodes
+            })
+            if (response.data.success && response.data.data?.length > 0) {
+                setPromoCodesList(response.data.data)
+            }
+        } catch (error) {
+            console.log("Could not load dynamic promo codes:", error)
+        }
+    }
+
+    useEffect(() => {
+        fetchPublicPromoCodes()
+    }, [])
 
     const fetchCartItem = async()=>{
         try {
@@ -130,7 +148,7 @@ const GlobalProvider = ({children}) => {
     }, [totalPrice, appliedPromoCode])
 
     const applyPromoCode = (codeString) => {
-        const found = AVAILABLE_PROMO_CODES.find(p => p.code.toUpperCase() === codeString.toUpperCase())
+        const found = promoCodesList.find(p => p.code.toUpperCase() === codeString.toUpperCase())
         
         if (!found) {
             toast.error("Invalid Promo Code")
@@ -214,7 +232,8 @@ const GlobalProvider = ({children}) => {
             appliedPromoCode,
             promoDiscountAmount,
             finalGrandTotal,
-            availablePromoCodes: AVAILABLE_PROMO_CODES,
+            availablePromoCodes: promoCodesList,
+            fetchPublicPromoCodes,
             applyPromoCode,
             removePromoCode,
             FREE_DELIVERY_THRESHOLD,

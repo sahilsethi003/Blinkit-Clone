@@ -156,6 +156,26 @@ const SummaryApi = {
     getOrderItems : {
         url : '/api/order/order-list',
         method : 'get'
+    },
+    createPromoCode : {
+        url : '/api/promocode/create',
+        method : 'post'
+    },
+    getPublicPromoCodes : {
+        url : '/api/promocode/get',
+        method : 'get'
+    },
+    getAdminPromoCodes : {
+        url : '/api/promocode/admin-get',
+        method : 'get'
+    },
+    updatePromoCode : {
+        url : '/api/promocode/update',
+        method : 'put'
+    },
+    deletePromoCode : {
+        url : '/api/promocode/delete',
+        method : 'delete'
     }
 }
 
