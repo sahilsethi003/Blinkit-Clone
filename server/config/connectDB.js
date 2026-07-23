@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from 'dotenv'
 import CategoryModel from "../models/category.model.js";
+import OrderModel from "../models/order.model.js";
 dotenv.config()
 
 if(!process.env.MONGODB_URI){
@@ -13,6 +14,14 @@ async function connectDB(){
     try {
         await mongoose.connect(process.env.MONGODB_URI)
         console.log("connect DB")
+
+        // Drop legacy unique index on orderId if it exists in MongoDB database
+        try {
+            await OrderModel.collection.dropIndex("orderId_1")
+            console.log("Successfully dropped legacy unique orderId index")
+        } catch (idxError) {
+            // Index doesn't exist or already dropped
+        }
 
         // Auto-fix Paan Corner image if it exists in database
         try {

@@ -7,8 +7,7 @@ const orderSchema = new mongoose.Schema({
     },
     orderId : {
         type : String,
-        required : [true, "Provide orderId"],
-        unique : true
+        default : ""
     },
     productId : {
         type : mongoose.Schema.ObjectId,
