@@ -14,48 +14,48 @@ if (!MONGODB_URI) {
 }
 
 const categoriesData = [
-    { name: "Dairy, Bread & Eggs", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500" },
-    { name: "Snacks & Munchies", image: "https://images.unsplash.com/photo-1613919113640-25732ec5e61f?w=500" },
-    { name: "Fruits & Vegetables", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500" },
-    { name: "Cold Drinks & Juices", image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500" },
-    { name: "Instant & Frozen Food", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500" },
-    { name: "Tea, Coffee & Health Drinks", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500" },
-    { name: "Bakery & Biscuits", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500" },
-    { name: "Atta, Rice & Dal", image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500" }
+    { name: "Dairy, Bread & Eggs", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=800" },
+    { name: "Snacks & Munchies", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=800" },
+    { name: "Fruits & Vegetables", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800" },
+    { name: "Cold Drinks & Juices", image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800" },
+    { name: "Instant & Frozen Food", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800" },
+    { name: "Tea, Coffee & Health Drinks", image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800" },
+    { name: "Bakery & Biscuits", image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800" },
+    { name: "Atta, Rice & Dal", image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800" }
 ];
 
 const subCategoriesData = [
     // Dairy, Bread & Eggs
-    { name: "Milk, Butter & Cheese", image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=500", categoryName: "Dairy, Bread & Eggs" },
-    { name: "Eggs & Bread", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500", categoryName: "Dairy, Bread & Eggs" },
+    { name: "Milk, Butter & Cheese", image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=800", categoryName: "Dairy, Bread & Eggs" },
+    { name: "Eggs & Bread", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800", categoryName: "Dairy, Bread & Eggs" },
     
     // Snacks & Munchies
-    { name: "Chips & Crisps", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=500", categoryName: "Snacks & Munchies" },
-    { name: "Namkeen & Popcorn", image: "https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=500", categoryName: "Snacks & Munchies" },
+    { name: "Chips & Crisps", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=800", categoryName: "Snacks & Munchies" },
+    { name: "Namkeen & Popcorn", image: "https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=800", categoryName: "Snacks & Munchies" },
 
     // Fruits & Vegetables
-    { name: "Fresh Vegetables", image: "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=500", categoryName: "Fruits & Vegetables" },
-    { name: "Fresh Fruits", image: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=500", categoryName: "Fruits & Vegetables" },
+    { name: "Fresh Vegetables", image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=800", categoryName: "Fruits & Vegetables" },
+    { name: "Fresh Fruits", image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=800", categoryName: "Fruits & Vegetables" },
 
     // Cold Drinks & Juices
-    { name: "Soft Drinks & Soda", image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500", categoryName: "Cold Drinks & Juices" },
-    { name: "Fruit Juices", image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500", categoryName: "Cold Drinks & Juices" },
+    { name: "Soft Drinks & Soda", image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800", categoryName: "Cold Drinks & Juices" },
+    { name: "Fruit Juices", image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800", categoryName: "Cold Drinks & Juices" },
 
     // Instant & Frozen Food
-    { name: "Instant Noodles & Pasta", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500", categoryName: "Instant & Frozen Food" },
-    { name: "Frozen Snacks", image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500", categoryName: "Instant & Frozen Food" },
+    { name: "Instant Noodles & Pasta", image: "https://images.unsplash.com/photo-1612927601601-6638404737ce?w=800", categoryName: "Instant & Frozen Food" },
+    { name: "Frozen Snacks", image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800", categoryName: "Instant & Frozen Food" },
 
     // Tea, Coffee & Health Drinks
-    { name: "Tea & Green Tea", image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500", categoryName: "Tea, Coffee & Health Drinks" },
-    { name: "Coffee", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500", categoryName: "Tea, Coffee & Health Drinks" },
+    { name: "Tea & Green Tea", image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800", categoryName: "Tea, Coffee & Health Drinks" },
+    { name: "Coffee", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800", categoryName: "Tea, Coffee & Health Drinks" },
 
     // Bakery & Biscuits
-    { name: "Cookies & Biscuits", image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500", categoryName: "Bakery & Biscuits" },
-    { name: "Cakes & Muffins", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500", categoryName: "Bakery & Biscuits" },
+    { name: "Cookies & Biscuits", image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800", categoryName: "Bakery & Biscuits" },
+    { name: "Cakes & Muffins", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800", categoryName: "Bakery & Biscuits" },
 
     // Atta, Rice & Dal
-    { name: "Atta & Flour", image: "https://images.unsplash.com/photo-1627483262769-04d0a1401487?w=500", categoryName: "Atta, Rice & Dal" },
-    { name: "Basmati Rice & Dals", image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500", categoryName: "Atta, Rice & Dal" }
+    { name: "Atta & Flour", image: "https://images.unsplash.com/photo-1627483262769-04d0a1401487?w=800", categoryName: "Atta, Rice & Dal" },
+    { name: "Basmati Rice & Dals", image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800", categoryName: "Atta, Rice & Dal" }
 ];
 
 const productsData = [
@@ -64,7 +64,7 @@ const productsData = [
     // ==========================================
     {
         name: "Amul Gold Full Cream Milk",
-        image: ["https://images.unsplash.com/photo-1563636619-e9143da7973b?w=500"],
+        image: ["https://images.unsplash.com/photo-1550583724-b2692b85b150?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Milk, Butter & Cheese",
         unit: "500 ml",
@@ -75,7 +75,7 @@ const productsData = [
     },
     {
         name: "Amul Pasteurised Butter",
-        image: ["https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=500"],
+        image: ["https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Milk, Butter & Cheese",
         unit: "100 g",
@@ -86,7 +86,7 @@ const productsData = [
     },
     {
         name: "Amul Processed Cheese Slices",
-        image: ["https://images.unsplash.com/photo-1528750908543-82427ecae164?w=500"],
+        image: ["https://images.unsplash.com/photo-1528750908543-82427ecae164?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Milk, Butter & Cheese",
         unit: "200 g",
@@ -97,7 +97,7 @@ const productsData = [
     },
     {
         name: "Mother Dairy Paneer",
-        image: ["https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500"],
+        image: ["https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Milk, Butter & Cheese",
         unit: "200 g",
@@ -108,7 +108,7 @@ const productsData = [
     },
     {
         name: "Britannia Cheese Block",
-        image: ["https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500"],
+        image: ["https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Milk, Butter & Cheese",
         unit: "200 g",
@@ -119,7 +119,7 @@ const productsData = [
     },
     {
         name: "Mother Dairy Classic Curd",
-        image: ["https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500"],
+        image: ["https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Milk, Butter & Cheese",
         unit: "400 g",
@@ -130,7 +130,7 @@ const productsData = [
     },
     {
         name: "Amul Taaza Toned Milk",
-        image: ["https://images.unsplash.com/photo-1563636619-e9143da7973b?w=500"],
+        image: ["https://images.unsplash.com/photo-1563636619-e9143da7973b?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Milk, Butter & Cheese",
         unit: "1 L",
@@ -141,7 +141,7 @@ const productsData = [
     },
     {
         name: "Amul Masti Spiced Buttermilk",
-        image: ["https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500"],
+        image: ["https://images.unsplash.com/photo-1626078440494-4d82b173ad5f?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Milk, Butter & Cheese",
         unit: "250 ml",
@@ -152,7 +152,7 @@ const productsData = [
     },
     {
         name: "English Oven Brown Bread",
-        image: ["https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"],
+        image: ["https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Eggs & Bread",
         unit: "400 g",
@@ -163,7 +163,7 @@ const productsData = [
     },
     {
         name: "Farm Fresh Table Eggs (Pack of 12)",
-        image: ["https://images.unsplash.com/photo-1516448620398-c5f44bf9f441?w=500"],
+        image: ["https://images.unsplash.com/photo-1516448620398-c5f44bf9f441?w=800"],
         categoryName: "Dairy, Bread & Eggs",
         subCategoryName: "Eggs & Bread",
         unit: "12 pcs",
@@ -178,7 +178,7 @@ const productsData = [
     // ==========================================
     {
         name: "Lays Classic Salted Potato Chips",
-        image: ["https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=500"],
+        image: ["https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Chips & Crisps",
         unit: "90 g",
@@ -189,7 +189,7 @@ const productsData = [
     },
     {
         name: "Kurkure Masala Munch",
-        image: ["https://images.unsplash.com/photo-1613919113640-25732ec5e61f?w=500"],
+        image: ["https://images.unsplash.com/photo-1613919113640-25732ec5e61f?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Chips & Crisps",
         unit: "85 g",
@@ -200,7 +200,7 @@ const productsData = [
     },
     {
         name: "Lays Cream & Onion Chips",
-        image: ["https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=500"],
+        image: ["https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Chips & Crisps",
         unit: "90 g",
@@ -211,7 +211,7 @@ const productsData = [
     },
     {
         name: "Pringles Sour Cream & Onion",
-        image: ["https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=500"],
+        image: ["https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Chips & Crisps",
         unit: "110 g",
@@ -222,7 +222,7 @@ const productsData = [
     },
     {
         name: "Doritos Cheese Nachos",
-        image: ["https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=500"],
+        image: ["https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Chips & Crisps",
         unit: "150 g",
@@ -233,7 +233,7 @@ const productsData = [
     },
     {
         name: "Bingo Mad Angles Chili Achari",
-        image: ["https://images.unsplash.com/photo-1613919113640-25732ec5e61f?w=500"],
+        image: ["https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Chips & Crisps",
         unit: "80 g",
@@ -244,7 +244,7 @@ const productsData = [
     },
     {
         name: "Haldiram's Aloo Bhujia",
-        image: ["https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=500"],
+        image: ["https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Namkeen & Popcorn",
         unit: "400 g",
@@ -255,7 +255,7 @@ const productsData = [
     },
     {
         name: "Haldiram's Bhujia Sev",
-        image: ["https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=500"],
+        image: ["https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Namkeen & Popcorn",
         unit: "400 g",
@@ -266,7 +266,7 @@ const productsData = [
     },
     {
         name: "Haldiram's Moong Dal",
-        image: ["https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=500"],
+        image: ["https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Namkeen & Popcorn",
         unit: "150 g",
@@ -277,7 +277,7 @@ const productsData = [
     },
     {
         name: "Act II Classic Salted Popcorn",
-        image: ["https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=500"],
+        image: ["https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=800"],
         categoryName: "Snacks & Munchies",
         subCategoryName: "Namkeen & Popcorn",
         unit: "70 g",
@@ -292,7 +292,7 @@ const productsData = [
     // ==========================================
     {
         name: "Hybrid Tomatoes",
-        image: ["https://images.unsplash.com/photo-1595855759920-86582396756a?w=500"],
+        image: ["https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Vegetables",
         unit: "1 kg",
@@ -303,7 +303,7 @@ const productsData = [
     },
     {
         name: "Fresh Potato (Alu)",
-        image: ["https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=500"],
+        image: ["https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Vegetables",
         unit: "1 kg",
@@ -314,7 +314,7 @@ const productsData = [
     },
     {
         name: "Fresh Onion (Pyaz)",
-        image: ["https://images.unsplash.com/photo-1508747703725-719ae2c73ee8?w=500"],
+        image: ["https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Vegetables",
         unit: "1 kg",
@@ -325,7 +325,7 @@ const productsData = [
     },
     {
         name: "Fresh Coriander Leaves (Dhaniya)",
-        image: ["https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=500"],
+        image: ["https://images.unsplash.com/photo-1588879460405-59e51c89dbf5?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Vegetables",
         unit: "100 g",
@@ -336,7 +336,7 @@ const productsData = [
     },
     {
         name: "Fresh Lemon (Nimbu)",
-        image: ["https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=500"],
+        image: ["https://images.unsplash.com/photo-1534706936160-d5ee67737249?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Vegetables",
         unit: "250 g",
@@ -347,7 +347,7 @@ const productsData = [
     },
     {
         name: "Fresh Ginger (Adrak)",
-        image: ["https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=500"],
+        image: ["https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Vegetables",
         unit: "250 g",
@@ -358,7 +358,7 @@ const productsData = [
     },
     {
         name: "Garlic (Lahsun)",
-        image: ["https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=500"],
+        image: ["https://images.unsplash.com/photo-1540148426945-6cf22a6b2383?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Vegetables",
         unit: "250 g",
@@ -369,7 +369,7 @@ const productsData = [
     },
     {
         name: "Green Chilli (Hari Mirch)",
-        image: ["https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=500"],
+        image: ["https://images.unsplash.com/photo-1566840656041-3d7f950dd7f1?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Vegetables",
         unit: "200 g",
@@ -380,7 +380,7 @@ const productsData = [
     },
     {
         name: "Shimla Apple (Royal Delicious)",
-        image: ["https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=500"],
+        image: ["https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Fruits",
         unit: "4 pcs",
@@ -391,7 +391,7 @@ const productsData = [
     },
     {
         name: "Robusta Banana",
-        image: ["https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=500"],
+        image: ["https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=800"],
         categoryName: "Fruits & Vegetables",
         subCategoryName: "Fresh Fruits",
         unit: "6 pcs",
@@ -406,7 +406,7 @@ const productsData = [
     // ==========================================
     {
         name: "Coca-Cola Soft Drink Can",
-        image: ["https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500"],
+        image: ["https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Soft Drinks & Soda",
         unit: "300 ml",
@@ -417,7 +417,7 @@ const productsData = [
     },
     {
         name: "Sprite Lime Soft Drink",
-        image: ["https://images.unsplash.com/photo-1626078440494-4d82b173ad5f?w=500"],
+        image: ["https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Soft Drinks & Soda",
         unit: "750 ml",
@@ -428,7 +428,7 @@ const productsData = [
     },
     {
         name: "Thums Up Cold Drink",
-        image: ["https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500"],
+        image: ["https://images.unsplash.com/photo-1554866585-cd94860890b7?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Soft Drinks & Soda",
         unit: "750 ml",
@@ -439,7 +439,7 @@ const productsData = [
     },
     {
         name: "Pepsi Soft Drink Bottle",
-        image: ["https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500"],
+        image: ["https://images.unsplash.com/photo-1543253687-c931c8e01820?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Soft Drinks & Soda",
         unit: "750 ml",
@@ -450,7 +450,7 @@ const productsData = [
     },
     {
         name: "Fanta Orange Soft Drink",
-        image: ["https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500"],
+        image: ["https://images.unsplash.com/photo-1624517452488-04869289c4ca?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Soft Drinks & Soda",
         unit: "750 ml",
@@ -461,7 +461,7 @@ const productsData = [
     },
     {
         name: "Limca Lemon Drink",
-        image: ["https://images.unsplash.com/photo-1626078440494-4d82b173ad5f?w=500"],
+        image: ["https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Soft Drinks & Soda",
         unit: "750 ml",
@@ -472,7 +472,7 @@ const productsData = [
     },
     {
         name: "Red Bull Energy Drink",
-        image: ["https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500"],
+        image: ["https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Soft Drinks & Soda",
         unit: "250 ml",
@@ -483,7 +483,7 @@ const productsData = [
     },
     {
         name: "Real Fruit Power Mixed Fruit Juice",
-        image: ["https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500"],
+        image: ["https://images.unsplash.com/photo-1613478223719-2ab802602423?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Fruit Juices",
         unit: "1 L",
@@ -494,7 +494,7 @@ const productsData = [
     },
     {
         name: "Real Fruit Power Orange Juice",
-        image: ["https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500"],
+        image: ["https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Fruit Juices",
         unit: "1 L",
@@ -505,7 +505,7 @@ const productsData = [
     },
     {
         name: "Tropicana 100% Apple Juice",
-        image: ["https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500"],
+        image: ["https://images.unsplash.com/photo-1576673442511-7e39b6545c87?w=800"],
         categoryName: "Cold Drinks & Juices",
         subCategoryName: "Fruit Juices",
         unit: "1 L",
@@ -520,7 +520,7 @@ const productsData = [
     // ==========================================
     {
         name: "Maggi 2-Minute Masala Noodles",
-        image: ["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500"],
+        image: ["https://images.unsplash.com/photo-1612927601601-6638404737ce?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Instant Noodles & Pasta",
         unit: "280 g",
@@ -531,7 +531,7 @@ const productsData = [
     },
     {
         name: "Yippee Magic Masala Noodles",
-        image: ["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500"],
+        image: ["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Instant Noodles & Pasta",
         unit: "240 g",
@@ -542,7 +542,7 @@ const productsData = [
     },
     {
         name: "Ching's Secret Schezwan Noodles",
-        image: ["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500"],
+        image: ["https://images.unsplash.com/photo-1585032226651-759b368d7246?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Instant Noodles & Pasta",
         unit: "240 g",
@@ -553,7 +553,7 @@ const productsData = [
     },
     {
         name: "Knorr Soupy Noodles Masala",
-        image: ["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500"],
+        image: ["https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Instant Noodles & Pasta",
         unit: "240 g",
@@ -564,7 +564,7 @@ const productsData = [
     },
     {
         name: "Del Monte Penne Pasta",
-        image: ["https://images.unsplash.com/photo-1612966608997-30004f75054f?w=500"],
+        image: ["https://images.unsplash.com/photo-1621996346565-e3def6164000?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Instant Noodles & Pasta",
         unit: "500 g",
@@ -575,7 +575,7 @@ const productsData = [
     },
     {
         name: "Ching's Secret Hakka Noodles",
-        image: ["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500"],
+        image: ["https://images.unsplash.com/photo-1552611052-33e04de081de?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Instant Noodles & Pasta",
         unit: "600 g",
@@ -586,7 +586,7 @@ const productsData = [
     },
     {
         name: "Maggi Hot & Sweet Ketchup",
-        image: ["https://images.unsplash.com/photo-1612966608997-30004f75054f?w=500"],
+        image: ["https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Instant Noodles & Pasta",
         unit: "1 kg",
@@ -597,7 +597,7 @@ const productsData = [
     },
     {
         name: "McCain French Fries",
-        image: ["https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500"],
+        image: ["https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Frozen Snacks",
         unit: "750 g",
@@ -608,7 +608,7 @@ const productsData = [
     },
     {
         name: "McCain Aloo Tikki",
-        image: ["https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500"],
+        image: ["https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Frozen Snacks",
         unit: "400 g",
@@ -619,7 +619,7 @@ const productsData = [
     },
     {
         name: "Safal Frozen Green Peas",
-        image: ["https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500"],
+        image: ["https://images.unsplash.com/photo-1587735243615-c03f25aaff15?w=800"],
         categoryName: "Instant & Frozen Food",
         subCategoryName: "Frozen Snacks",
         unit: "500 g",
@@ -634,7 +634,7 @@ const productsData = [
     // ==========================================
     {
         name: "Tata Tea Premium",
-        image: ["https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500"],
+        image: ["https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Tea & Green Tea",
         unit: "1 kg",
@@ -645,7 +645,7 @@ const productsData = [
     },
     {
         name: "Red Label Tea",
-        image: ["https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500"],
+        image: ["https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Tea & Green Tea",
         unit: "1 kg",
@@ -656,7 +656,7 @@ const productsData = [
     },
     {
         name: "Taj Mahal Tea",
-        image: ["https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500"],
+        image: ["https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Tea & Green Tea",
         unit: "500 g",
@@ -667,7 +667,7 @@ const productsData = [
     },
     {
         name: "Wagh Bakri Premium Tea",
-        image: ["https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500"],
+        image: ["https://images.unsplash.com/photo-1561047029-3000c68339ca?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Tea & Green Tea",
         unit: "1 kg",
@@ -678,7 +678,7 @@ const productsData = [
     },
     {
         name: "Lipton Green Tea Honey Lemon",
-        image: ["https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500"],
+        image: ["https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Tea & Green Tea",
         unit: "25 bags",
@@ -689,7 +689,7 @@ const productsData = [
     },
     {
         name: "Nescafe Classic Instant Coffee",
-        image: ["https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500"],
+        image: ["https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Coffee",
         unit: "100 g",
@@ -700,7 +700,7 @@ const productsData = [
     },
     {
         name: "Bru Instant Coffee",
-        image: ["https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500"],
+        image: ["https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Coffee",
         unit: "100 g",
@@ -711,7 +711,7 @@ const productsData = [
     },
     {
         name: "Nescafe Sunrise Instant Coffee",
-        image: ["https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500"],
+        image: ["https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Coffee",
         unit: "100 g",
@@ -722,7 +722,7 @@ const productsData = [
     },
     {
         name: "Horlicks Chocolate Health Drink",
-        image: ["https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500"],
+        image: ["https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Coffee",
         unit: "500 g",
@@ -733,7 +733,7 @@ const productsData = [
     },
     {
         name: "Bournvita Chocolate Health Drink",
-        image: ["https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500"],
+        image: ["https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=800"],
         categoryName: "Tea, Coffee & Health Drinks",
         subCategoryName: "Coffee",
         unit: "500 g",
@@ -748,7 +748,7 @@ const productsData = [
     // ==========================================
     {
         name: "Britannia Good Day Butter Cookies",
-        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"],
+        image: ["https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cookies & Biscuits",
         unit: "200 g",
@@ -759,7 +759,7 @@ const productsData = [
     },
     {
         name: "Britannia Bourbon Biscuits",
-        image: ["https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"],
+        image: ["https://images.unsplash.com/photo-1560180474-e8563fd75bab?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cookies & Biscuits",
         unit: "150 g",
@@ -770,7 +770,7 @@ const productsData = [
     },
     {
         name: "Parle-G Gluco Biscuits",
-        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"],
+        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cookies & Biscuits",
         unit: "250 g",
@@ -781,7 +781,7 @@ const productsData = [
     },
     {
         name: "Oreo Chocolate Cookies",
-        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"],
+        image: ["https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cookies & Biscuits",
         unit: "120 g",
@@ -792,7 +792,7 @@ const productsData = [
     },
     {
         name: "Britannia Marie Gold Biscuits",
-        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"],
+        image: ["https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cookies & Biscuits",
         unit: "250 g",
@@ -803,7 +803,7 @@ const productsData = [
     },
     {
         name: "Britannia NutriChoice Digestive",
-        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"],
+        image: ["https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cookies & Biscuits",
         unit: "250 g",
@@ -814,7 +814,7 @@ const productsData = [
     },
     {
         name: "Parle Hide & Seek Cookies",
-        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"],
+        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cookies & Biscuits",
         unit: "200 g",
@@ -825,7 +825,7 @@ const productsData = [
     },
     {
         name: "Sunfeast Dark Fantasy Fills",
-        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"],
+        image: ["https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cookies & Biscuits",
         unit: "150 g",
@@ -836,7 +836,7 @@ const productsData = [
     },
     {
         name: "Britannia Little Hearts Biscuits",
-        image: ["https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500"],
+        image: ["https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cookies & Biscuits",
         unit: "75 g",
@@ -847,7 +847,7 @@ const productsData = [
     },
     {
         name: "Cadbury Chocobake Chocolate Cakes",
-        image: ["https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500"],
+        image: ["https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800"],
         categoryName: "Bakery & Biscuits",
         subCategoryName: "Cakes & Muffins",
         unit: "150 g",
@@ -862,7 +862,7 @@ const productsData = [
     // ==========================================
     {
         name: "Aashirvaad Shudh Chakki Atta",
-        image: ["https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?w=500"],
+        image: ["https://images.unsplash.com/photo-1627483262769-04d0a1401487?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Atta & Flour",
         unit: "10 kg",
@@ -873,7 +873,7 @@ const productsData = [
     },
     {
         name: "Fortune Chakki Fresh Atta",
-        image: ["https://images.unsplash.com/photo-1608686207856-001b95cf60ca?w=500"],
+        image: ["https://images.unsplash.com/photo-1608686207856-001b95cf60ca?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Atta & Flour",
         unit: "5 kg",
@@ -884,7 +884,7 @@ const productsData = [
     },
     {
         name: "Fortune Rozana Basmati Rice",
-        image: ["https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500"],
+        image: ["https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "5 kg",
@@ -895,7 +895,7 @@ const productsData = [
     },
     {
         name: "Tata Sampann Toor Dal",
-        image: ["https://images.unsplash.com/photo-1547058881-aa0edd92aab3?w=500"],
+        image: ["https://images.unsplash.com/photo-1547058881-aa0edd92aab3?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 kg",
@@ -906,7 +906,7 @@ const productsData = [
     },
     {
         name: "Tata Sampann Moong Dal",
-        image: ["https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=500"],
+        image: ["https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 kg",
@@ -917,7 +917,7 @@ const productsData = [
     },
     {
         name: "Tata Sampann Masoor Dal",
-        image: ["https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=500"],
+        image: ["https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 kg",
@@ -928,7 +928,7 @@ const productsData = [
     },
     {
         name: "Tata Sampann Kabuli Chana",
-        image: ["https://images.unsplash.com/photo-1536304997881-a372c179924b?w=500"],
+        image: ["https://images.unsplash.com/photo-1536304997881-a372c179924b?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 kg",
@@ -939,7 +939,7 @@ const productsData = [
     },
     {
         name: "Fortune Soyabean Oil",
-        image: ["https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500"],
+        image: ["https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 L",
@@ -950,7 +950,7 @@ const productsData = [
     },
     {
         name: "Fortune Mustard Oil",
-        image: ["https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=500"],
+        image: ["https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 L",
@@ -961,7 +961,7 @@ const productsData = [
     },
     {
         name: "Tata Salt",
-        image: ["https://images.unsplash.com/photo-1604882737321-e6937fd6f519?w=500"],
+        image: ["https://images.unsplash.com/photo-1604882737321-e6937fd6f519?w=800"],
         categoryName: "Atta, Rice & Dal",
         subCategoryName: "Basmati Rice & Dals",
         unit: "1 kg",
@@ -1027,7 +1027,7 @@ async function seed() {
         console.log("Creating text indexes on Product collection...");
         await ProductModel.createIndexes();
 
-        console.log("Database seeded successfully with professional dummy data!");
+        console.log("Database seeded successfully with professional product images!");
         process.exit(0);
     } catch (error) {
         console.error("Error seeding database:", error);

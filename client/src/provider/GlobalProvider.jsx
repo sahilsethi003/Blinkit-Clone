@@ -81,6 +81,7 @@ const GlobalProvider = ({children}) => {
           if(responseData.success){
             toast.success(responseData.message)
             fetchCartItem()
+            return responseData
           }
       } catch (error) {
          AxiosToastError(error)
